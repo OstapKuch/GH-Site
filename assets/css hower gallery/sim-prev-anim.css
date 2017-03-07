@@ -15,55 +15,55 @@
 	z-index: 1;
 	}
 .sim-anim-9:hover img:nth-child(1){
-     -ms-transform: translate(0,43%) scale(0.4,0.4);
-   	-webkit-transform: translate(0,43%)  scale(0.4,0.4);  
-    transform: translate(0,43%)  scale(0.4,0.4);
+     -ms-transform: translate(0,33%) scale(0.3,0.3);
+   	-webkit-transform: translate(0,33%)  scale(0.3,0.3);  
+    transform: translate(0,33%)  scale(0.3,0.3);
 	
 	}	
 .sim-anim-9:hover img:nth-child(2){
-     -ms-transform: translate(42%,43%) scale(0.4,0.4);
-   	-webkit-transform: translate(42%,43%)  scale(0.4,0.4);  
-    transform: translate(42%,43%)  scale(0.4,0.4);
+     -ms-transform: translate(32%,33%) scale(0.3,0.3);
+   	-webkit-transform: translate(32%,33%)  scale(0.3,0.3);  
+    transform: translate(32%,33%)  scale(0.3,0.3);
 	}		
 .sim-anim-9:hover img:nth-child(3){
-     -ms-transform: translate(-42%,43%) scale(0.4,0.4) ;
-   	-webkit-transform: translate(-42%,43%)  scale(0.4,0.4);  
-    transform: translate(-42%,43%)  scale(0.4,0.4);
+     -ms-transform: translate(-32%,33%) scale(0.3,0.3) ;
+   	-webkit-transform: translate(-32%,33%)  scale(0.3,0.3);  
+    transform: translate(-32%,33%)  scale(0.3,0.3);
 
 	}
 
 .sim-anim-9:hover img:nth-child(4){
-    -ms-transform: translate(-42%,0) scale(0.4,0.4);
-   	-webkit-transform: translate(-42%,0)  scale(0.4,0.4);  
-    transform: translate(-42%,0)  scale(0.4,0.4); 
+    -ms-transform: translate(-32%,0) scale(0.3,0.3);
+   	-webkit-transform: translate(-32%,0)  scale(0.3,0.3);  
+    transform: translate(-32%,0)  scale(0.3,0.3); 
 	  
 	}		
 .sim-anim-9:hover img:nth-child(5){
-    -ms-transform: translate(42%,0) scale(0.4,0.4);
-   	-webkit-transform: translate(42%,0)  scale(0.4,0.4);  
-    transform: translate(42%,0)  scale(0.4,0.4);
+    -ms-transform: translate(32%,0) scale(0.3,0.3);
+   	-webkit-transform: translate(32%,0)  scale(0.3,0.3);  
+    transform: translate(32%,0)  scale(0.3,0.3);
  
 	}	
 .sim-anim-9:hover img:nth-child(6){
-    -ms-transform: translate(42%,-42%) scale(0.4,0.4);
-   	-webkit-transform: translate(42%,-42%)  scale(0.4,0.4);  
-    transform: translate(42%,-42%)  scale(0.4,0.4); 
+    -ms-transform: translate(32%,-32%) scale(0.3,0.3);
+   	-webkit-transform: translate(32%,-32%)  scale(0.3,0.3);  
+    transform: translate(32%,-32%)  scale(0.3,0.3); 
 	
 	}	
 .sim-anim-9:hover img:nth-child(7){
-    -ms-transform: translate(-42%,-42%)  scale(0.4,0.4);  
-   	-webkit-transform: translate(-42%,-42%)  scale(0.4,0.4);  
-    transform: translate(-42%,-42%)  scale(0.4,0.4); 
+    -ms-transform: translate(-32%,-32%)  scale(0.3,0.3);  
+   	-webkit-transform: translate(-32%,-32%)  scale(0.3,0.3);  
+    transform: translate(-32%,-32%)  scale(0.3,0.3); 
 	
 	}		
 .sim-anim-9:hover img:nth-child(8){
-    -ms-transform: translate(0,-42%) scale(0.4,0.4); 
-   	-webkit-transform: translate(0,-42%) scale(0.4,0.4);
-    transform: translate(0,-42%) scale(0.4,0.4);
+    -ms-transform: translate(0,-32%) scale(0.3,0.3); 
+   	-webkit-transform: translate(0,-32%) scale(0.3,0.3);
+    transform: translate(0,-32%) scale(0.3,0.3);
  
 	}	
 .sim-anim-9:hover img:nth-child(9){
-    -ms-transform: scale(0.4,0.4); 
-   	-webkit-transform:scale(0.4,0.4);
-    transform: scale(0.4,0.4); 
+    -ms-transform: scale(0.3,0.3); 
+   	-webkit-transform:scale(0.3,0.3);
+    transform: scale(0.3,0.3); 
 	}	
