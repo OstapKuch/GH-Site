@@ -1,15 +1,14 @@
 
 	
-	
-	
 
 .sim-anim-9 img{
 	position: absolute;
   left:10%;
-	-webkit-transition: all 0.4s ;
-	-moz-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	transition: all 0.4s;
+
+	-webkit-transition: all 0.5s ;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
 	}
 .sim-anim-9:hover img{
 	z-index: 1;

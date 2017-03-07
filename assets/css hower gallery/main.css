@@ -1,15 +1,19 @@
 
 
 .left-hover {
-width: 90%;
-height:90%;
+display: block;
+    margin-right: auto;
+
+    max-width: 90%;
+    height: 300px;
+
 
 }
 
 
 .albums-tab-thumb img {
 	height: auto;
-	width: 100%;
+	max-width: 100%;
 		
 
 }
