@@ -3,7 +3,8 @@
 
 .sim-anim-9 img{
 	position: absolute;
-  left:10%;
+  margin-left: auto;
+  margin-right: auto;
 
 	-webkit-transition: all 0.5s ;
 	-moz-transition: all 0.5s;
