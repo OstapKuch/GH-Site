@@ -4,8 +4,8 @@
 
 
 .albums-tab-thumb img {
-	height: 359px;
-	width: 540px;
+	height: auto;
+	width: 100%;
 		
 
 }
