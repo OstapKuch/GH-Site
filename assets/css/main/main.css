@@ -4354,6 +4354,13 @@ ul.pagination.pagination-pasific li.active a {
 /*  --------------------------------------------------------
 29. FOOTER
 -------------------------------------------------------- */
+.footer-index {
+    height:100px;
+    margin-top:15%;
+}       
+.comname {
+    
+} 
 .footer.footer-one .copyright {
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
