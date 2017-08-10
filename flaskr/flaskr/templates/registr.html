@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pasific Site Template | Carousel One</title>        
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Harry Boo">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+
+        <!-- Load Core CSS 
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
+    
+        <!-- Load Main CSS 
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/hover.css') }}"/>
+        
+        <!-- Load Magnific Popup CSS 
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>              
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup-zoom-gallery.css') }}"/>
+        
+        <!-- Load OWL Carousel CSS 
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
+
+         <!-- Css for hover gallery 
+        =====================================-->
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/Icomoon/style.css') }}"/>
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
+
+        <!-- Load Our Additional CSS 
+         =====================================-->
+
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
+        
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
+        
+        <!-- Load JS
+        HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        WARNING: Respond.js doesn't work if you view the page via file://
+        =====================================-->
+
+    </head>
+    <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
+        
+        <!-- Page Loader
+        ===================================== -->
+    
+        
+        <!-- Navigation Area
+        ===================================== -->        
+       
+        <div class="container navbar-container">
+            <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand page-scroll" href="#page-top">
+                             <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                            Lviv-tour
+                        </a>
+                    </div>
+
+                    <div class="navbar-collapse collapse navbar-main-collapse">
+                        <ul class="nav navbar-nav">
+                           
+
+                            <li><a href="#">Home </a></li>
+                            <li><a href="map.html">Cars </a></li>
+                            <li><a href="contact.html">Contacts </a></li>
+                               
+                            
+
+                        </ul>
+
+                    </div>
+
+            </nav>
+        </div>
+
+        
+   
+                    
+                 
+        
+       
+       
+        
+        
+       
+       <!-- General Content Area
+        ===================================== -->
+        <div id="general-content-2" class="bg-gray pt100 pb100">
+            <div class="container ">
+                <div class="row">
+                
+                    <form method="post">
+                        <p><input type='text' name='username' class="reg">
+                        <p><input type='text' name='password' class="reg">
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out reb"  value=Login>Log in</button>
+                    </form>               
+                    
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- section general info end -->
+        
+        
+     
+        
+     
+      
+       
+        
+        
+        <!-- footer Area
+        ===================================== -->
+        <div id="footer" class="footer-two pt50">
+            
+            
+            <div class="container-fluid pt20">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- copyright start -->
+                        <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
+                            <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
+                        </div>
+                        <!-- copyright end -->
+
+                        <!-- footer bottom start -->
+                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                            <p class="text-right">
+                                <a href="#" class="mr20">Privacy Policy</a>
+                                <a href="#" class="mr20">Term of Use</a>
+                                <a href="#" class="mr50">Site Map</a>
+                            </p>
+                        </div>
+                        <!-- footer bottom end -->
+
+                    </div><!-- row end -->
+                </div><!-- container end -->
+            </div><!-- container-fluid end -->
+        </div><!-- footer end -->
+        
+        
+        <!-- JQuery Core
+        =====================================-->
+        <script  src="{{ url_for('static', filename = 'js/js/core/jquery.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
+        
+        <!-- Magnific Popup
+        =====================================-->
+
+        <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
+        
+        <!-- Progress Bars
+        =====================================-->
+        <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar-main.js') }}"></script>
+        
+        <!-- JQuery Main
+        =====================================-->
+
+        <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/parallax.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/js/main/jquery.countTo.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/owl.carousel.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/ion.rangeSlider.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/jquery.sticky.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/imagesloaded.pkgd.min.js') }}"></script>
+
+
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/js-hover-gallery/changing_pic.js') }}"></script>
+
+        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+    </body>
+</html>
