@@ -8,11 +8,17 @@ import sqlite3
 @app.route('/', methods=['GET', 'POST'])
 def connect():
 	if request.method == 'POST':
-		user = request.form['username']
+		email = request.form['email']
 		pas = request.form['password']
-		conn = sqlite3.connect('Project')
+		num = request.form['number']
+		name = request.form['name']
+		surname = request.form['surname']
+		idd = 2
+		adm = 0
+		
+		conn = sqlite3.connect('Proj')
 		c = conn.cursor()
-		c.execute("INSERT INTO users (user, pass) VALUES (?, ?)",(user, pas))
+		c.execute("INSERT INTO Users (id, email, password, number, name, surname, admin ) VALUES (?, ?, ?, ?, ?, ?, ?)",(idd, email, pas, num, name, surname, adm))
 		conn.commit()
 		return render_template('sign in.html')
 

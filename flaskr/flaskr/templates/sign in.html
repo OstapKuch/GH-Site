@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         
 
         <!-- Load Core CSS 
@@ -35,7 +35,7 @@
 
          <!-- Css for hover gallery 
         =====================================-->
-        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}"/>
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
 
         <!-- Load Our Additional CSS 
@@ -60,6 +60,15 @@
         
         <!-- Page Loader
         ===================================== -->
+        <div id="pageloader">
+            <div class="loader-item">
+                <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
+            </div>
+        </div>
+        
+        <a href="#page-top" class="go-to-top">
+            <i class="fa fa-long-arrow-up"></i>
+        </a>
     
         
         <!-- Navigation Area
@@ -112,7 +121,7 @@
                 <div class="row">
                 
                     <form method="post">
-                        <p><input type='text' name='username' class="reg">
+                        <p><input type='text' name='email' class="reg">
                         <p><input type='text' name='password' class="reg">
                         <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>Log in</button>
                     </form>               
