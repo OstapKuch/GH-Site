@@ -15,7 +15,7 @@ def connect():
 		print(t)
 		a1 = str(a1)
 		print(a3)
-		conn = sqlite3.connect('Proj')
+		conn = sqlite3.connect('Proj (1)')
 		c = conn.cursor()
 		c.execute('SELECT email, password FROM Users WHERE email=?', [a1])
 		a = c.fetchall()

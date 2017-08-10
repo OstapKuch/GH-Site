@@ -16,7 +16,7 @@ def connect():
 		idd = 2
 		adm = 0
 		
-		conn = sqlite3.connect('Proj')
+		conn = sqlite3.connect('Proj (1)')
 		c = conn.cursor()
 		c.execute("INSERT INTO Users (id, email, password, number, name, surname, admin ) VALUES (?, ?, ?, ?, ?, ?, ?)",(idd, email, pas, num, name, surname, adm))
 		conn.commit()
