@@ -8,20 +8,16 @@ import sqlite3
 @app.route('/', methods=['GET', 'POST'])
 def connect():
 	if request.method == 'POST':
-		a1 = request.form['username']
+		a1 = request.form['email']
 		a2 = request.form['password']
 		a3 = "('" + a1 + "', '" + a2 + "')"
 		t =  "('" + a1 + "',)"
 		print(t)
 		a1 = str(a1)
 		print(a3)
-<<<<<<< HEAD
 		conn = sqlite3.connect('Proj (1)')
-=======
-		conn = sqlite3.connect('Project')
->>>>>>> fd9f7ed50bc7017cd3b91b8297a240421a2625fe
 		c = conn.cursor()
-		c.execute('SELECT * FROM users WHERE user=?', [a1])
+		c.execute('SELECT email, password FROM Users WHERE email=?', [a1])
 		a = c.fetchall()
 		print(a[0])
 		y = a[0]
@@ -31,7 +27,6 @@ def connect():
 			return render_template('show_entries.html')
 		else:
 			return render_template('sign in.html')
-
 
 
 	
