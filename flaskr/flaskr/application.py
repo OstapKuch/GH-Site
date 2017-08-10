@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def load():
-    return render_template('sign in.html')
+    return render_template('registr.html')
 import sqlite3
 @app.route('/', methods=['GET', 'POST'])
 def connect():
