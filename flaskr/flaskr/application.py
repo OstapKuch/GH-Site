@@ -29,7 +29,13 @@ def connect():
 			return render_template('sign in.html')
 
 
-	
+@app.route('/registr', methods=['GET', 'POST'])
+def registr():
+    return render_template('registr.html')
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    return render_template('sign in.html')
+
 
 
 
