@@ -13,7 +13,6 @@
 				var image = document.getElementById("img-changed_"+a);
 				var image_2 = document.getElementById("img-changed_"+(a+1));
 				img = image.src;
-				console.log(a)
 				if(a==8){
 				var image_2 = document.getElementById("img-changed_0");
 				image.src = image_2.src;
