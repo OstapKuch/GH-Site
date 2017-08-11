@@ -1,12 +1,31 @@
 from flask import Flask, session, render_template, request, url_for, escape
-app = Flask(__name__)
+from flask_mail import Mail, Message
 
-@app.route('/')
+app = Flask(__name__)
+mail=Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'ostapco220@gmail.com'
+app.config['MAIL_PASSWORD'] = '123xer098'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
+@app.route("/send")
+def send():
+   msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = ['ostapko220@gmail.com'])
+   msg.body = "Hello Flask message sent from Flask-Mail"
+   mail.send(msg)
+   return "Sent"
+
+@app.route("/")
 def load():
     return render_template('index.html')
 
 import sqlite3
 
+	
 @app.route('/connect', methods=['GET', 'POST'])
 def connect():
 	if request.method == 'POST':
@@ -19,7 +38,7 @@ def connect():
 		print(t)
 		a1 = str(a1)
 		print(a3)
-		conn = sqlite3.connect('Proj1')
+		conn = sqlite3.connect('228')
 		c = conn.cursor()
 		c.execute('SELECT email, password FROM Users WHERE email=?', [a1])
 		a = c.fetchall()
@@ -49,20 +68,33 @@ def login():
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
+	import random
+	c = 0
+	a = ""
+	while c < 6:
+		b = random.randint(1,9)
+		b = str(b)
+		a = a + b
+		c= c + 1
+	print(a)
+
 	if request.method == 'POST':
+		
 		email = request.form['email']
 		pas = request.form['password']
 		num = request.form['number']
 		name = request.form['name']
 		surname = request.form['surname']
-		idd = 15
 		adm = 0
-		conn = sqlite3.connect('Proj1')
+		conn = sqlite3.connect('228')
 		c = conn.cursor()
-		c.execute("INSERT INTO Users (id, email, password, number, name, surname, admin ) VALUES (?, ?, ?, ?, ?, ?, ?)",(idd, email, pas, num, name, surname, adm))
+		c.execute("INSERT INTO Users_temp (email, number, name, surname, admin, code, password) VALUES (?, ?, ?, ?, ?, ?,?)",(email, num, name, surname, adm, a, pas))
 		conn.commit()
 		c.close()
-		return render_template('sign in.html')
+		msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
+		msg.body = "Dear "+ name +", its your security code:  " + a + " Please enter it in confirm field to finish registration."
+		mail.send(msg)
+		return render_template('confirm.html')
 
 @app.route('/logout')
 def logout():
@@ -75,3 +107,46 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 
+@app.route('/confirm', methods=['GET', 'POST'])
+def confirm():
+	if request.method == 'POST':
+		a1 = request.form['code']
+		t =  "('" + a1 + "',)"
+		print(t)
+		a1 = str(a1)
+		conn = sqlite3.connect('228')
+		c = conn.cursor()
+		c.execute('SELECT code FROM Users_temp WHERE code=?', [a1])
+		a = c.fetchall()
+		c.close()
+		print(a[0])
+		y = a[0]
+		y = str(y)
+		t = str(t)
+		if y == t:
+			conn = sqlite3.connect('228')
+			c = conn.cursor()
+			c.execute('SELECT email FROM Users_temp WHERE code=?', [a1])
+			em = [str(item[0]) for item in c.fetchall()]
+			c.execute('SELECT password FROM Users_temp WHERE code=?', [a1])
+			pas = [str(item[0]) for item in c.fetchall()]
+			c.execute('SELECT number FROM Users_temp WHERE code=?', [a1])
+			num = [str(item[0]) for item in c.fetchall()]
+			c.execute('SELECT name FROM Users_temp WHERE code=?', [a1])
+			nam = [str(item[0]) for item in c.fetchall()]
+			c.execute('SELECT surname FROM Users_temp WHERE code=?', [a1])
+			sur = [str(item[0]) for item in c.fetchall()]
+			c.close()
+			adm = 1
+			print(em[0], pas[0], num[0], nam[0], sur[0])
+	
+			print(em, pas, num, nam, sur, adm)
+			conn = sqlite3.connect('228')
+			c = conn.cursor()
+			print(em, pas, num, nam, sur, adm)
+			c.execute("INSERT INTO Users (email, password, number, name, surname, admin) VALUES (?, ?, ?, ?, ?, ?)",(em[0], pas[0], num[0], nam[0], sur[0], adm))
+			print(em[0], pas[0], num[0])
+			conn.commit()
+			c.close()
+			print(em[0], pas[0], num[0])
+			return render_template('sign in.html')
