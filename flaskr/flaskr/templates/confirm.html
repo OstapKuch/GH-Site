@@ -49,6 +49,11 @@
     
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
+
+
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
         
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -117,7 +122,12 @@
                  
 
                     <form action="confirm" method="post">
-                        <p><input type='text' name='code' class="reg">
+                         <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text" id="input-38" name="code" />
+                            <label class="input__label input__label--manami" for="input-38">
+                                <span class="input__label-content input__label-content--manami">Code</span>
+                            </label>
+                        </span>
                         <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>confirm</button>
                     </form>              
                     
@@ -163,7 +173,7 @@
             </div><!-- container-fluid end -->
         </div><!-- footer end -->
         
-        
+        <script  src="{{ url_for('static', filename = 'js/js_inputs/classie.js') }}"></script>  
         <!-- JQuery Core
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
@@ -194,5 +204,6 @@
 
 
         <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/js_inputs/new.js') }}"></script>
     </body>
 </html>
