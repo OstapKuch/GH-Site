@@ -51,10 +51,12 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
         
 
-
+        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
+
+        
 
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -128,8 +130,10 @@
         <div id="general-content-2" class="bg-gray pt100 pb100">
             <div class="container ">
                 <div class="row">
-                
+                  <div class="reg">
+
                     <form action="connect" method="post">
+                    <div class="reg">
                          <span class="input input--manami">
                             <input class="input__field input__field--manami" type="text" id="input-37" name="email" />
                             <label class="input__label input__label--manami" for="input-37">
@@ -143,7 +147,9 @@
                                 <span class="input__label-content input__label-content--manami">Password</span>
                             </label>
                         </span>
+                        </div>
                         <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>Log in</button>
+                    </div>
                     </form>               
                     
                 </div><!-- row end -->

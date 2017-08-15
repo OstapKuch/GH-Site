@@ -122,7 +122,11 @@
                            
 
                             <li><a href="#">Home </a></li>
-                            {% if session['username'] %}
+                            {% if session['username'] %}   
+                                {% if session['username'] == 'admin' %}
+                                <li><a href="{{ url_for('logout') }}">Panel </a></li>
+                                {% endif %}
+                            <li><a href="{{ url_for('logout') }}">My orders </a></li>
                             <li><a href="{{ url_for('logout') }}">Logout </a></li>
                             {% else %}
                             <li><a href="{{ url_for('login') }}">Sign in </a></li>

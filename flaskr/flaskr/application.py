@@ -30,7 +30,7 @@ import sqlite3
 def connect():
 	if request.method == 'POST':
 
-		session['username'] = 'admin'
+		
 		a1 = request.form['email']
 		a2 = request.form['password']
 		a3 = "('" + a1 + "', '" + a2 + "')"
@@ -42,11 +42,22 @@ def connect():
 		c = conn.cursor()
 		c.execute('SELECT email, password FROM Users WHERE email=?', [a1])
 		a = c.fetchall()
+		c.execute('SELECT admin FROM Users WHERE email=?', [a1])
+		b = c.fetchall()
 		print(a[0])
+		b = b[0]
+		b = str(b)
 		y = a[0]
 		y = str(y)
 		a3 = str(a3)
+		print(b)
+		if b == '(0,)':
+			l = "admin"
+		else:
+			l = 'user'
 		if y == a3:
+			print(l)
+			session['username'] = l
 			return render_template('show_entries.html')
 		else:
 			return render_template('sign in.html')
@@ -139,13 +150,16 @@ def confirm():
 			c.close()
 			adm = 1
 			print(em[0], pas[0], num[0], nam[0], sur[0])
-	
+			f = em[0]
+			f = str(f)
+			print(f)
 			print(em, pas, num, nam, sur, adm)
 			conn = sqlite3.connect('228')
 			c = conn.cursor()
 			print(em, pas, num, nam, sur, adm)
 			c.execute("INSERT INTO Users (email, password, number, name, surname, admin) VALUES (?, ?, ?, ?, ?, ?)",(em[0], pas[0], num[0], nam[0], sur[0], adm))
 			print(em[0], pas[0], num[0])
+			c.execute('DELETE FROM Users_temp WHERE email=?', [f])
 			conn.commit()
 			c.close()
 			print(em[0], pas[0], num[0])
