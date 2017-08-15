@@ -124,9 +124,9 @@
                             <li><a href="#">Home </a></li>
                             {% if session['username'] %}   
                                 {% if session['username'] == 'ostapko220@gmail.com' %}
-                                <li><a href="{{ url_for('logout') }}">Panel </a></li>
+                                <li><a href="{{ url_for('orders') }}">Panel </a></li>
                                 {% endif %}
-                            <li><a href="{{ url_for('logout') }}">My orders </a></li>
+                            <li><a href="{{ url_for('list') }}">My orders </a></li>
                             <li><a href="{{ url_for('logout') }}">Logout </a></li>
                             {% else %}
                             <li><a href="{{ url_for('login') }}">Sign in </a></li>
@@ -229,7 +229,7 @@
                             <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
                                 ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia 
                                 non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <a class="button button-md button-pasific hover-ripple-out" href="bus_pg_01.html">More Details</a>
+                            <a class="button button-md button-pasific hover-ripple-out" href="{{ url_for('list') }}">More Details</a>
                             
                             <div class="clearfix"></div>
                         </div>
