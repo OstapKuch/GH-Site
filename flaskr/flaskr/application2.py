@@ -173,7 +173,7 @@ def list():
    con.row_factory = sql.Row
    
    cur = con.cursor()
-   cur.execute("select * from Users")
+   cur.execute("select * from Cars")
    
    rows = cur.fetchall(); 
    return render_template("bus_pg_01.html",rows = rows)

@@ -289,11 +289,7 @@
             <td>Name</td>
          </thead>
          
-         {% for row in rows %}
-            <tr>
-               <td>{{row["name"]}}</td>
-            </tr>
-         {% endfor %}
+
       </table>
         <div id="testimonial" class="pt75 pb75">
             <div class="container pt50">
@@ -304,22 +300,22 @@
 
                             <thead>
                                 <tr>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>
+                                    <th>id</th>
+                                    <th>conditions</th>
+                                    <th>rode</th>
+                                    <th>places</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                </tr>
-                                <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                </tr>
-                                <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
+                                {% for row in rows %}
+                                    <tr>
+                                       <td>{{row["id"]}}</td>
+                                       <td>{{row["conditions"]}}</td>
+                                       <td>{{row["rode"]}}</td>
+                                       <td>{{row["places"]}}</td>
+                                    </tr>
+                                {% endfor %}
                                 </tr>
                             </tbody>
                         </table>
