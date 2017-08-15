@@ -1,7 +1,8 @@
 from flask import Flask, session, render_template, request, url_for, escape
 from flask_login import current_user
 from flask_mail import Mail, Message
-
+import sqlite3
+import sqlite3 as sql
 app = Flask(__name__)
 mail=Mail(app)
 
@@ -24,7 +25,8 @@ def send():
 def load():
     return render_template('index.html')
 
-import sqlite3
+
+
 
 	
 @app.route('/connect', methods=['GET', 'POST'])
@@ -118,6 +120,10 @@ def logout():
 def contact():
     # remove the username from the session if it's there
     return render_template('contact.html')
+@app.route('/panel')
+def panel():
+    # remove the username from the session if it's there
+    return render_template('admin_panel.html')
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'   
 
@@ -190,3 +196,26 @@ def form():
 		msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
 		mail.send(msg)
 		return render_template('contact.html')
+
+@app.route('/orders')
+def orders():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from Orders")
+   
+   rows = cur.fetchall(); 
+   return render_template("admin_panel.html",rows = rows)
+
+
+@app.route('/list')
+def list():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from Cars")
+   
+   rows = cur.fetchall(); 
+   return render_template('bus_pg_01.html',rows = rows)
