@@ -1,4 +1,5 @@
 from flask import Flask, session, render_template, request, url_for, escape
+from flask_login import current_user
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ def send():
 
 @app.route("/")
 def load():
-    return render_template('bus_pg_01.html')
+    return render_template('index.html')
 
 import sqlite3
 import sqlite3 as sql
@@ -56,8 +57,8 @@ def connect():
 		else:
 			l = 'user'
 		if y == a3:
-			print(l)
-			session['username'] = l
+			session['username'] = a1
+			print(session['username'])
 			return render_template('show_entries.html')
 		else:
 			return render_template('sign in.html')
@@ -113,6 +114,11 @@ def logout():
     session.pop('username', None)
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    # remove the username from the session if it's there
+    return render_template('contact.html')
+
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'   
 
 
@@ -167,6 +173,32 @@ def confirm():
 
 
 
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+	if request.method == 'POST':
+		conn = sqlite3.connect('228')
+		c = conn.cursor()
+		email = session['username']
+		c.execute('SELECT name FROM Users WHERE email=?', [email])
+		nam = [str(item[0]) for item in c.fetchall()]
+		c.execute('SELECT surname FROM Users WHERE email=?', [email])
+		sur = [str(item[0]) for item in c.fetchall()]
+		c.execute('SELECT number FROM Users WHERE email=?', [email])
+		num = [str(item[0]) for item in c.fetchall()]
+		nam = str(nam)
+		msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
+		msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
+		mail.send(msg)
+		return render_template('contact.html')
+
+
+@app.route('/forr')
+def forr():
+	conn = sqlite3.connect('228')
+	c = conn.cursor()
+	a2=request.form['img']
+	c.execute('insert into Cars (photo) SELECT photo FROM Openrowset( Bulk a2, Single_Blob) as img')
+	
 @app.route('/list')
 def list():
    con = sql.connect("228")
