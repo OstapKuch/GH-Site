@@ -179,23 +179,7 @@ def confirm():
 
 
 
-@app.route('/form', methods=['GET', 'POST'])
-def form():
-	if request.method == 'POST':
-		conn = sqlite3.connect('228')
-		c = conn.cursor()
-		email = session['username']
-		c.execute('SELECT name FROM Users WHERE email=?', [email])
-		nam = [str(item[0]) for item in c.fetchall()]
-		c.execute('SELECT surname FROM Users WHERE email=?', [email])
-		sur = [str(item[0]) for item in c.fetchall()]
-		c.execute('SELECT number FROM Users WHERE email=?', [email])
-		num = [str(item[0]) for item in c.fetchall()]
-		nam = str(nam)
-		msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
-		msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
-		mail.send(msg)
-		return render_template('contact.html')
+
 
 @app.route('/orders')
 def orders():
@@ -219,3 +203,29 @@ def list():
    
    rows = cur.fetchall(); 
    return render_template('bus_pg_01.html',rows = rows)
+
+
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+	if request.method == 'POST':
+		conn = sqlite3.connect('228')
+		c = conn.cursor()
+		email = session['username']
+		c.execute('SELECT id FROM Users WHERE email=?', [email])
+		id = [str(item[0]) for item in c.fetchall()]
+		c.execute('SELECT name FROM Users WHERE email=?', [email])
+		nam = [str(item[0]) for item in c.fetchall()]
+		c.execute('SELECT surname FROM Users WHERE email=?', [email])
+		sur = [str(item[0]) for item in c.fetchall()]
+		c.execute('SELECT number FROM Users WHERE email=?', [email])
+		num = [str(item[0]) for item in c.fetchall()]
+		nam = str(nam)
+		msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
+		msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
+		mail.send(msg)
+		dest = request.form['destination']
+		date = request.form['date']
+		peop = request.form['people']
+		c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(id), str(id), str(date), dest, peop))
+		conn.commit()
+		return render_template('contact.html')
