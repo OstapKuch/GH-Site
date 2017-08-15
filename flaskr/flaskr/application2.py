@@ -21,10 +21,10 @@ def send():
 
 @app.route("/")
 def load():
-    return render_template('index.html')
+    return render_template('bus_pg_01.html')
 
 import sqlite3
-
+import sqlite3 as sql
 	
 @app.route('/connect', methods=['GET', 'POST'])
 def connect():
@@ -164,3 +164,16 @@ def confirm():
 			c.close()
 			print(em[0], pas[0], num[0])
 			return render_template('sign in.html')
+
+
+
+@app.route('/list')
+def list():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from Users")
+   
+   rows = cur.fetchall(); 
+   return render_template("bus_pg_01.html",rows = rows)
