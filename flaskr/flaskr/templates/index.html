@@ -123,7 +123,7 @@
 
                             <li><a href="#">Home </a></li>
                             {% if session['username'] %}   
-                                {% if session['username'] == 'admin' %}
+                                {% if session['username'] == 'ostapko220@gmail.com' %}
                                 <li><a href="{{ url_for('logout') }}">Panel </a></li>
                                 {% endif %}
                             <li><a href="{{ url_for('logout') }}">My orders </a></li>
@@ -132,6 +132,7 @@
                             <li><a href="{{ url_for('login') }}">Sign in </a></li>
                             <li><a href="{{ url_for('registr') }}">Register </a></li>
                             {% endif %}
+                            <li><a href="{{ url_for('contact') }}">Contact </a></li>
 
 
                         </ul>

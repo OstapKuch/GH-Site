@@ -64,7 +64,7 @@
         ===================================== -->
 		<div id="pageloader">
 			<div class="loader-item">
-                <img src="assets/img/other/puff.svg" alt="page loader">
+                <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
             </div>
 		</div>
         
@@ -83,7 +83,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
                         <a class="navbar-brand page-scroll" href="#page-top">
-                            <img src="assets/img/logo/logo-default.png" alt="logo">
+                            <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
                             Lviv-tour
                         </a>
                     </div>
@@ -92,9 +92,18 @@
                         <ul class="nav navbar-nav">
                            
 
-                            <li><a href="index.html">Home </a></li>
-                            <li><a href="page-gallery-4col.html">Cars </a></li>
-                            <li><a href="#">Contacts </a></li>
+                            <li><a href="{{ url_for('home') }}">Home </a></li>
+                            {% if session['username'] %}   
+                                {% if session['username'] == 'admin' %}
+                                <li><a href="{{ url_for('logout') }}">Panel </a></li>
+                                {% endif %}
+                            <li><a href="{{ url_for('logout') }}">My orders </a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout </a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}">Sign in </a></li>
+                            <li><a href="{{ url_for('registr') }}">Register </a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('contact') }}">Contact </a></li>
                                
                             
 
@@ -163,7 +172,7 @@
                                     <small class="text-lowercase">Please complete the form and we will get back to you.</small>
                                 </h4>
                             </div>
-                            <form name="contactform" id="contactForm" method="post" action="assets/php/send.php">
+                            <form name="contactform" id="contactForm" method="post" action="form">
                                 
                                 <!-- fullname start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -197,11 +206,6 @@
                                 </div>
                                 <!-- textarea end -->
                                 
-                                <!-- button start -->
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <button type="submit" name="sendMessage" id="sendMessage" class="button button-md button-block button-grad-stellar">Send Message</button>
-                                </div>
-                                <!-- button end -->
                                 
                                 <!-- button start -->
                                 <div class="col-sm-12 mt10 text-center">
