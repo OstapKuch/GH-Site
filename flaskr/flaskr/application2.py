@@ -26,6 +26,9 @@ def load():
 
 import sqlite3
 import sqlite3 as sql
+import sys
+
+
 	
 @app.route('/connect', methods=['GET', 'POST'])
 def connect():
@@ -192,12 +195,15 @@ def form():
 		return render_template('contact.html')
 
 
-@app.route('/forr')
+@app.route('/forr', methods=['GET', 'POST'])
 def forr():
 	conn = sqlite3.connect('228')
 	c = conn.cursor()
-	a2=request.form['img']
-	c.execute('insert into Cars (photo) SELECT photo FROM Openrowset( Bulk a2, Single_Blob) as img')
+	c.execute("SELECT * from Photo")
+	a = c.fetchall()
+	print(a)
+	return render_template("bus_pg_01.html")
+
 	
 @app.route('/list')
 def list():
@@ -205,7 +211,63 @@ def list():
    con.row_factory = sql.Row
    
    cur = con.cursor()
-   cur.execute("select * from Cars")
+   cur.execute("SELECT * from Cars")
    
    rows = cur.fetchall(); 
    return render_template("bus_pg_01.html",rows = rows)
+
+@app.route('/regcar')
+def regcar():
+	return render_template('registr_car.html')
+@app.route('/regdrive')
+def regdrive():
+	return render_template('registr_driver.html')
+
+@app.route('/reggcar', methods=['GET', 'POST'])
+def reggcar():
+	conditions = request.form['conditions']
+	countries = request.form['countries']
+	places = request.form['places']
+	print(places)
+	conn = sqlite3.connect('228')
+	c = conn.cursor()	
+	c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
+	conn.commit()
+	conn.close()
+	return redirect(url_for('list2'))
+
+@app.route('/reggdriver', methods=['GET', 'POST'])
+def reggdriver():
+	name = request.form['name']
+	surname= request.form['surname']
+	number = request.form['number']
+	print(number)
+	conn = sqlite3.connect('228')
+	c = conn.cursor()	
+	c.execute("INSERT INTO Drivers (name, surname, number) VALUES (?, ?, ?)",(name, surname, number))
+	conn.commit()
+	conn.close()
+	return redirect(url_for('list2'))
+
+
+
+
+
+@app.route('/list2', methods=['GET', 'POST'])
+def list2():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+
+   cur.execute("select * from Cars")
+   rowss = cur.fetchall();
+
+   cur.execute("select * from Orders")
+   rows = cur.fetchall();
+
+
+   cur.execute("select * from Drivers")
+   rowsss = cur.fetchall();  
+
+   return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
