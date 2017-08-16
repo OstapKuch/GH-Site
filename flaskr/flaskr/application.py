@@ -277,3 +277,13 @@ def list2():
    rowsss = cur.fetchall();  
 
    return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
+@app.route('/accept')
+def accept():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   c = con.cursor()
+   c.execute("UPDATE ORDERS SET confirm=1 where Orders.id=1")
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))

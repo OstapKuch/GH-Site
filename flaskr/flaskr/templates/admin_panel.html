@@ -141,6 +141,7 @@
                                             <th>date</th>
                                             <th>destination</th>
                                             <th>price</th>
+                                            <th>way long</th>
                                             <th>confirm</th>
 
                                         </tr>
@@ -157,7 +158,12 @@
                                                <td>{{row["destination"]}}</td>
                                                <td>{{row["price"]}}</td>
                                                <td>{{row["waylong"]}}</td>
-                                               <td>{{row["confirm"]}}</td>
+                                               <td id="aa11">{{row["confirm"]}}</td>
+                                               <form action="accept">
+                                                   <td><button id={{row["id"]}} class="button-3d button-xs button-square button-success"> </button>
+                                               </form>
+                                               
+                                               <td><button id={{row["id"]}} class="button-3d button-xs button-square button-danger"> </button></td>
                                             </tr>
                                         {% endfor %}
                                         </tr>
