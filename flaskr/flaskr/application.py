@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request, url_for, escape
+from flask import Flask, session, render_template, request, url_for, escape, redirect
 from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
@@ -69,9 +69,11 @@ def connect():
 @app.route('/registr', methods=['GET', 'POST'])
 def registr():
     return render_template('registr.html')
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('sign in.html')
@@ -181,17 +183,6 @@ def confirm():
 
 
 
-@app.route('/orders')
-def orders():
-   con = sql.connect("228")
-   con.row_factory = sql.Row
-   
-   cur = con.cursor()
-   cur.execute("select * from Orders")
-   
-   rows = cur.fetchall(); 
-   return render_template("admin_panel.html",rows = rows)
-
 
 @app.route('/list')
 def list():
@@ -229,3 +220,60 @@ def form():
 		c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(id), str(id), str(date), dest, peop))
 		conn.commit()
 		return render_template('contact.html')
+
+
+@app.route('/regcar')
+def regcar():
+	return render_template('registr_car.html')
+@app.route('/regdrive')
+def regdrive():
+	return render_template('registr_driver.html')
+
+@app.route('/reggcar', methods=['GET', 'POST'])
+def reggcar():
+	conditions = request.form['conditions']
+	countries = request.form['countries']
+	places = request.form['places']
+	print(places)
+	conn = sqlite3.connect('228')
+	c = conn.cursor()	
+	c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
+	conn.commit()
+	conn.close()
+	return redirect(url_for('list2'))
+
+@app.route('/reggdriver', methods=['GET', 'POST'])
+def reggdriver():
+	name = request.form['name']
+	surname= request.form['surname']
+	number = request.form['number']
+	print(number)
+	conn = sqlite3.connect('228')
+	c = conn.cursor()	
+	c.execute("INSERT INTO Drivers (name, surname, number) VALUES (?, ?, ?)",(name, surname, number))
+	conn.commit()
+	conn.close()
+	return redirect(url_for('list2'))
+
+
+
+
+
+@app.route('/list2', methods=['GET', 'POST'])
+def list2():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+
+   cur.execute("select * from Cars")
+   rowss = cur.fetchall();
+
+   cur.execute("select * from Orders")
+   rows = cur.fetchall();
+
+
+   cur.execute("select * from Drivers")
+   rowsss = cur.fetchall();  
+
+   return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)

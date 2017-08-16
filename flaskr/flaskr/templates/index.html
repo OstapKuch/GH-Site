@@ -124,7 +124,7 @@
                             <li><a href="#">Home </a></li>
                             {% if session['username'] %}   
                                 {% if session['username'] == 'ostapko220@gmail.com' %}
-                                <li><a href="{{ url_for('orders') }}">Panel </a></li>
+                                <li><a href="{{ url_for('list2') }}">Panel </a></li>
                                 {% endif %}
                             <li><a href="{{ url_for('list') }}">My orders </a></li>
                             <li><a href="{{ url_for('logout') }}">Logout </a></li>

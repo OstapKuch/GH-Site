@@ -99,10 +99,15 @@
                            
 
                             <li><a href="{{ url_for('home') }}">Home </a></li>
-                            <li><a href="{{ url_for('regcar') }}">register new car </a></li>
-                            <li><a href="{{ url_for('regdrive') }}">register new driver </a></li>
 
- 
+                            {% if session['username'] %}
+                            <li><a href="{{ url_for('logout') }}">Logout </a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}">Sign in </a></li>
+                            <li><a href="{{ url_for('registr') }}">Register </a></li>
+                            {% endif %}
+                               
+                            
 
                         </ul>
 
@@ -125,122 +130,44 @@
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
             <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">Orders</h4>
-                                <table class="table table-striped new-one">
+                <div class="row">
+                  <form action="reggdriver" method="post" class="clasicc"> 
+                   
+                  <div class="reg">
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="name" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">name</span>
+                            </label>
+                        </span>
 
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>car id</th>
-                                            <th>user id</th>
-                                            <th>driver id</th>
-                                            <th>date</th>
-                                            <th>destination</th>
-                                            <th>price</th>
-                                            <th>confirm</th>
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="surname" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">surname</span>
+                            </label>
+                        </span>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        {% for row in rows %}
-                                            <tr>
-                                               <td>{{row["id"]}}</td>
-                                               <td>{{row["car_id"]}}</td>
-                                               <td>{{row["user_id"]}}</td>
-                                               <td>{{row["driver_id"]}}</td>
-                                               <td>{{row["date"]}}</td>
-                                               <td>{{row["destination"]}}</td>
-                                               <td>{{row["price"]}}</td>
-                                               <td>{{row["waylong"]}}</td>
-                                               <td>{{row["confirm"]}}</td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="integer"  name="number" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">phone number</span>
+                            </label>
+                        </span>
 
-                        </div>
+                        <br>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
                     </div>
-            </div><!-- container end -->
-            <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">cars</h4>
-                                <table class="table table-striped new-one">
-
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>conditions</th>
-                                            <th>countries</th>
-                                            <th>places</th>
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        {% for row in rowss %}
-                                            <tr>
-                                               <td>{{row["id"]}}</td>
-                                               <td>{{row["conditions"]}}</td>
-                                               <td>{{row["rode"]}}</td>
-                                               <td>{{row["places"]}}</td>
-
-                                            </tr>
-                                        {% endfor %}
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-            </div><!-- container end -->
-            <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">drivers</h4>
-                                <table class="table table-striped new-one">
-
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>name</th>
-                                            <th>surname</th>
-                                            <th>phone number</th>
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        {% for row in rowsss %}
-                                            <tr>
-                                               <td>{{row["id"]}}</td>
-                                               <td>{{row["name"]}}</td>
-                                               <td>{{row["surname"]}}</td>
-                                               <td>{{row["number"]}}</td>
-
-                                            </tr>
-                                        {% endfor %}
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
+                        
+                    
+                   </form>   
+                   
+                     
+        
+        
+                </div><!-- row end -->
             </div><!-- container end -->
         </div><!-- section general info end -->
         
