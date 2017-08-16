@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request, url_for, escape
+from flask import Flask, session, render_template, request, url_for, escape, redirect
 from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
@@ -229,3 +229,19 @@ def form():
 		c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(id), str(id), str(date), dest, peop))
 		conn.commit()
 		return render_template('contact.html')
+@app.route('/regcar')
+def regcar():
+	return render_template('registr_car.html')
+
+@app.route('/reggcar', methods=['GET', 'POST'])
+def reggcar():
+	conditions = request.form['conditions']
+	countries = request.form['countries']
+	places = request.form['places']
+	print(places)
+	conn = sqlite3.connect('228')
+	c = conn.cursor()	
+	c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
+	conn.commit()
+	conn.close()
+	return redirect(url_for('list'))
