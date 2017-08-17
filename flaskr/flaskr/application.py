@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request, url_for, escape, redirect
+from flask import Flask, session, render_template, request, url_for, escape, redirect, send_from_directory
 from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
@@ -12,7 +12,9 @@ UPLOAD_FOLDER = 'static\img\cars'
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 mail=Mail(app)
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'ostapco220@gmail.com'
@@ -265,30 +267,81 @@ def deny():
    con.close()
    return redirect(url_for('list2'))
 
-@app.route('/uploader', methods = ['GET', 'POST'])
-def upload_file():
 
-  f = request.files['file']
-  con = sql.connect("228")
-  c = con.cursor()
-  c.execute("SELECT MAX(id) from Photos")
-  em = [(item[0]) for item in c.fetchall()]
-  c.execute("SELECT MAX(id) from Cars")
-  mm = [(item[0]) for item in c.fetchall()]
+@app.route('/upload', methods = ['GET', 'POST'])
+def upload():
 
-  em = em[0]
-  mm = mm[0]
-  em = em + 1
-  mm = mm + 1
+  uploaded_files = request.files.getlist("file[]")
+  filenames = []
+  for file in uploaded_files:
+    
+    if file and allowed_file(file.filename):
+      
+       
+        con = sql.connect("228")
+        c = con.cursor()
+        c.execute("SELECT MAX(id) from Photos")
+        em = [(item[0]) for item in c.fetchall()]
+        c.execute("SELECT MAX(id) from Cars")
+        mm = [(item[0]) for item in c.fetchall()]
+        print(em)
+        mm = mm[0]
+        em = em[0]
+        em = em + 1
+       
 
-  print(f.filename)
-  strip = os.path.splitext(f.filename)
-  print(strip[1])
-  filename = secure_filename(f.filename)
-  c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(mm, strip[1]))
-  con.commit()
-  f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  return 'file uploaded successfully'
+        mm = mm + 1
+        strip = os.path.splitext(file.filename)
+        strip = str(em) + str(strip[1])
+        c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(mm, strip))
+        con.commit()
+        
+        filename = secure_filename(file.filename)
+        
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
+        filenames.append(strip)
+         
+  return render_template('registr_car.html', filenames=filenames)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+
+
+@app.route('/registr_car.html/<filename>')
+def uploaded_file(filename):  
+  return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 @app.route('/accept', methods=['GET', 'POST'])
 def accept():

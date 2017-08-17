@@ -163,14 +163,15 @@
                         
                     
                    </form>   
-                   <form action = "uploader" method = "POST" enctype = "multipart/form-data">
-                     
-                     <input type = "file" name = "file" multiple/>
-                     <input type = "submit"/>
+                   <form action="upload" method="post" enctype="multipart/form-data">
+                        <input type="file" multiple="" name="file[]" class="span3" /><br />
+                        <input type="submit" value="Upload"  class="span2">
                     </form>
-                     
-        
-        
+                      <ul>
+        {% for file in filenames %}
+          <li><a href="{{url_for('uploaded_file', filename=file)}}">{{file}}</a></li>
+        {% endfor %}
+      </ul>
                 </div><!-- row end -->
             </div><!-- container end -->
         </div><!-- section general info end -->
