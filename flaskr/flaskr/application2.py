@@ -1,7 +1,9 @@
-from flask import Flask, session, render_template, request, url_for, escape
+from flask import Flask, session, render_template, request, url_for, escape, redirect
 from flask_login import current_user
 from flask_mail import Mail, Message
-
+import sqlite3
+import sqlite3 as sql
+from werkzeug import secure_filename
 app = Flask(__name__)
 mail=Mail(app)
 
@@ -24,9 +26,7 @@ def send():
 def load():
     return render_template('index.html')
 
-import sqlite3
-import sqlite3 as sql
-import sys
+
 
 
 	
@@ -70,9 +70,11 @@ def connect():
 @app.route('/registr', methods=['GET', 'POST'])
 def registr():
     return render_template('registr.html')
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('sign in.html')
@@ -121,6 +123,10 @@ def logout():
 def contact():
     # remove the username from the session if it's there
     return render_template('contact.html')
+@app.route('/panel')
+def panel():
+    # remove the username from the session if it's there
+    return render_template('admin_panel.html')
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'   
 
@@ -176,12 +182,29 @@ def confirm():
 
 
 
+
+
+
+@app.route('/list')
+def list():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from Cars")
+   
+   rows = cur.fetchall(); 
+   return render_template('bus_pg_01.html',rows = rows)
+
+
 @app.route('/form', methods=['GET', 'POST'])
 def form():
 	if request.method == 'POST':
 		conn = sqlite3.connect('228')
 		c = conn.cursor()
 		email = session['username']
+		c.execute('SELECT id FROM Users WHERE email=?', [email])
+		id = [str(item[0]) for item in c.fetchall()]
 		c.execute('SELECT name FROM Users WHERE email=?', [email])
 		nam = [str(item[0]) for item in c.fetchall()]
 		c.execute('SELECT surname FROM Users WHERE email=?', [email])
@@ -192,29 +215,13 @@ def form():
 		msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
 		msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
 		mail.send(msg)
+		dest = request.form['destination']
+		date = request.form['date']
+		peop = request.form['people']
+		c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(id), str(id), str(date), dest, peop))
+		conn.commit()
 		return render_template('contact.html')
 
-
-@app.route('/forr', methods=['GET', 'POST'])
-def forr():
-	conn = sqlite3.connect('228')
-	c = conn.cursor()
-	c.execute("SELECT * from Photo")
-	a = c.fetchall()
-	print(a)
-	return render_template("bus_pg_01.html")
-
-	
-@app.route('/list')
-def list():
-   con = sql.connect("228")
-   con.row_factory = sql.Row
-   
-   cur = con.cursor()
-   cur.execute("SELECT * from Cars")
-   
-   rows = cur.fetchall(); 
-   return render_template("bus_pg_01.html",rows = rows)
 
 @app.route('/regcar')
 def regcar():
@@ -271,3 +278,28 @@ def list2():
    rowsss = cur.fetchall();  
 
    return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
+@app.route('/accept', methods=['GET', 'POST'])
+def accept():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   c = con.cursor()
+   a = request.form.get('but')	
+   print(a)
+   c.execute("UPDATE ORDERS SET confirm=1 where Orders.id=1")
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))
+
+
+
+
+
+
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
+		
