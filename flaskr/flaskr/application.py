@@ -2,9 +2,16 @@ from flask import Flask, session, render_template, request, url_for, escape, red
 from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
+import os
 import sqlite3 as sql
 from werkzeug import secure_filename
+
+
+
+UPLOAD_FOLDER = 'static\img\cars'
 app = Flask(__name__)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mail=Mail(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -245,18 +252,7 @@ def list3():
 
 
 
-@app.route('/accept', methods=['GET', 'POST'])
-def accept():
 
-   con = sql.connect("228")
-   con.row_factory = sql.Row
-   c = con.cursor()
-   a = request.form.get('but')
-   print(a)
-   c.execute("UPDATE Orders SET confirm=1 where Orders.id=?",([a]))
-   con.commit()
-   con.close()
-   return redirect(url_for('list2'))
 @app.route('/deny', methods=['GET', 'POST'])
 def deny():
    con = sql.connect("228")
@@ -268,9 +264,43 @@ def deny():
    con.commit()
    con.close()
    return redirect(url_for('list2'))
+
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
+
+  f = request.files['file']
+  con = sql.connect("228")
+  c = con.cursor()
+  c.execute("SELECT MAX(id) from Photos")
+  em = [(item[0]) for item in c.fetchall()]
+  c.execute("SELECT MAX(id) from Cars")
+  mm = [(item[0]) for item in c.fetchall()]
+
+  em = em[0]
+  mm = mm[0]
+  em = em + 1
+  mm = mm + 1
+
+  print(f.filename)
+  strip = os.path.splitext(f.filename)
+  print(strip[1])
+  filename = secure_filename(f.filename)
+  c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(mm, strip[1]))
+  con.commit()
+  f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  return 'file uploaded successfully'
+  
+@app.route('/accept', methods=['GET', 'POST'])
+def accept():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   c = con.cursor()
+   a = request.form.get('but')
+   l = request.form['inp']
+   c.execute("UPDATE Orders SET driver_id=? where Orders.id=?",([l],[a]))
+   print(a)
+   c.execute("UPDATE Orders SET confirm=1 where Orders.id=?",([a]))
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))
+

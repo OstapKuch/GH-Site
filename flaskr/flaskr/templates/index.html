@@ -233,25 +233,38 @@
                     <!-- right content start -->
                     <div class="col-md-5 col-md-push-1">
                         <div class="general-content">
+                            <div class="reg">
                             <h3 class="mb25">
                                 <small class="color-red">small info</small>
                             </h3>
                        
-                            <table class="table table-striped new-one">
-
-                                    <thead>
-                                         <br>
-                                         <br>
-                                         <br>
-                                         <br>
-                                        places:  <a value={{rowss["id"]}}>{{row["places"]}}</a><br><br>
-                                        conditions:  <a value={{rowss["id"]}}>{{row["conditions"]}}</a><br><br>
-                                        rode:  <a value={{rowss["id"]}}>{{row["rode"]}}</a>
-                                        
+                                <a>
+                                <table class="table table-striped new-one sizee">
+                                    <tbody>
+                                        <tr>
+                                        {% for row in rowss %}
+                                            <tr>
+                                                <th>places</th>
+                                                <td>{{row["places"]}}</td>
+                                                
+                                                
+                                            </tr>
+                                            <tr>
+                                               <th>conditions</th>
+                                               <td>{{row["rode"]}}</td>
+                                            </tr>
+                                            <tr>
+                                               <th>rode</th>
+                                               <td>{{row["rode"]}}</td>
+                                            </tr>
+                                            
+                                        {% endfor %}
+                                        </tr>
                                     </tbody>
                                 </table>
-                            
+                                </a>
                             <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
                     <!-- right content end -->          
@@ -268,116 +281,7 @@
 
         <!-- General Content Area
         ===================================== -->
-        <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container">
-                <div class="row">
-                    
-                    <!-- left content start -->
-                    <div class="col-md-6">
-                        <img src="{{ url_for('static', filename='img/other/img-other-2.png') }}" alt="browser iphone" class="img-responsive center-block">
-                    </div>
-                    <!-- left content end -->
-                    
-                    <!-- right content start -->
-                    <div class="col-md-5 col-md-push-1">
-                        <div class="general-content">
-                            <h3 class="mb25">
-                                <small class="color-red">eCommerce</small>
-                                Online Store Ready
-                            </h3>
-                            <table class="table table-striped new-one">
-
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>  asd </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <!-- right content end -->                    
-                    
-                </div><!-- row end -->
-            </div><!-- container end -->
-        </div><!-- section general info end -->
-        
-        
-        <!-- General Content Area
-        ===================================== -->
-        <div id="general-content-1" class="pt100 pb100">
-            <div class="container">
-                <div class="row">
-                    
-                    <!-- left content start -->
-                    <div class="col-md-5">
-                        <div class="general-content">
-                            <h3 class="mb25">
-                                <small class="color-red">Mobile Optimized</small>
-                                Support for All Mobile Devices
-                            </h3>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
-                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia 
-                                non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <a class="button button-md button-pasific hover-ripple-out">Purchase Now</a>
-                            
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <!-- left content end -->
-                    
-                    <!-- right content start -->
-                    <div class="col-md-5 col-md-push-1">
-                        <img src="{{ url_for('static', filename='img/other/img-other-1.png') }}" alt="browser iphone" class="img-responsive pull-right">
-                    </div>
-                    <!-- right content end -->
-                    
-                </div>
-            </div>
-        </div>
-           
-        
-       <!-- General Content Area
-        ===================================== -->
-        <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container">
-                <div class="row">
-                    
-                    <!-- left content start -->
-                    <div class="col-md-6">
-                        <img src="{{ url_for('static', filename='img/other/img-other-2.png') }}" alt="browser iphone" class="img-responsive center-block">
-                    </div>
-                    <!-- left content end -->
-                    
-                    <!-- right content start -->
-                    <div class="col-md-5 col-md-push-1">
-                        <div class="general-content">
-                            <h3 class="mb25">
-                                <small class="color-red">eCommerce</small>
-                                Online Store Ready
-                            </h3>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
-                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia 
-                                non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <a class="button button-md button-pasific hover-ripple-out">Purchase Now</a>
-                            
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <!-- right content end -->                    
-                    
-                </div><!-- row end -->
-            </div><!-- container end -->
-        </div><!-- section general info end -->
-        
+       
         
      
         

@@ -325,3 +325,16 @@ def upload_file():
 	f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 	return 'file uploaded successfully'
 	
+@app.route('/accept', methods=['GET', 'POST'])
+def accept():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   c = con.cursor()
+   a = request.form.get('but')
+   l=request.form('inp')
+   c.execute("UPDATE Orders SET Orders.driver_id=? where Orders.id=?",([l],[a]))
+   print(a)
+   c.execute("UPDATE Orders SET confirm=1 where Orders.id=?",([a]))
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))
