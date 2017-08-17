@@ -159,11 +159,11 @@
                                                <td>{{row["price"]}}</td>
                                                <td>{{row["waylong"]}}</td>
                                                <td id="aa11">{{row["confirm"]}}</td>
-                                               <form action="accept">
-                                                   <td><button id={{row["id"]}} class="button-3d button-xs button-square button-success"> </button>
+                                               <form action="accept" method="post">
+                                                   <td><button id={{row["id"]}} name="but" value={{row["id"]}} class="button-3d button-xs button-square button-success"> </button></td>
                                                </form>
                                                
-                                               <td><button id={{row["id"]}} class="button-3d button-xs button-square button-danger"> </button></td>
+                                               <td><button id={{row["id"]}}  class="button-3d button-xs button-square button-danger"> </button></td>
                                             </tr>
                                         {% endfor %}
                                         </tr>

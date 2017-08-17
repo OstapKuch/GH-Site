@@ -3,6 +3,7 @@ from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
 import sqlite3 as sql
+from werkzeug import secure_filename
 app = Flask(__name__)
 mail=Mail(app)
 
@@ -277,13 +278,28 @@ def list2():
    rowsss = cur.fetchall();  
 
    return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
-@app.route('/accept')
+@app.route('/accept', methods=['GET', 'POST'])
 def accept():
    con = sql.connect("228")
    con.row_factory = sql.Row
-   
    c = con.cursor()
+   a = request.form.get('but')	
+   print(a)
    c.execute("UPDATE ORDERS SET confirm=1 where Orders.id=1")
    con.commit()
    con.close()
    return redirect(url_for('list2'))
+
+
+
+
+
+
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
+		
