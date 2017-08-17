@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta name="description" content="Simple ideas for enhancing text input interactions" />
         <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
-
         <!-- Load Core CSS 
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
@@ -31,18 +30,12 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
-
          <!-- Css for hover gallery 
         =====================================-->
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
-
         <!-- Load Our Additional CSS 
          =====================================-->
-
-
-
-
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
         
     
@@ -54,23 +47,7 @@
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
         =====================================-->
-
-
-
-
-
-
-
-
-
         <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
-
-
-
-
-
-
-
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
         
@@ -83,7 +60,6 @@
        
         <div class="container navbar-container">
             <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
-
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
@@ -93,24 +69,17 @@
                             Lviv-tour
                         </a>
                     </div>
-
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
                            
-
                             <li><a href="{{ url_for('home') }}">Home </a></li>
                             <li><a href="{{ url_for('regcar') }}">register new car </a></li>
                             <li><a href="{{ url_for('regdrive') }}">register new driver </a></li>
-
  
-
                         </ul>
-
                     </div>
-
             </nav>
         </div>
-
         
    
                     
@@ -131,7 +100,6 @@
                             <div class="col-md-12">
                                 <h4 class="text-center mb30">Orders</h4>
                                 <table class="table table-striped new-one">
-
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -143,7 +111,6 @@
                                             <th>price</th>
                                             <th>way long</th>
                                             <th>confirm</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -162,15 +129,14 @@
                                                <form action="accept" method="post">
                                                    <td><button id={{row["id"]}} name="but" value={{row["id"]}} class="button-3d button-xs button-square button-success"> </button></td>
                                                </form>
-                                               
-                                               <td><button id={{row["id"]}}  class="button-3d button-xs button-square button-danger"> </button></td>
+                                               <form action = "deny" method="post">
+                                               <td><button id={{row["id"]}}  value={{row["id"]}} name="but1" class="button-3d button-xs button-square button-danger"> </button></td></form>
                                             </tr>
                                         {% endfor %}
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
             </div><!-- container end -->
@@ -181,15 +147,12 @@
                             <div class="col-md-12">
                                 <h4 class="text-center mb30">cars</h4>
                                 <table class="table table-striped new-one">
-
                                     <thead>
                                         <tr>
                                             <th>id</th>
                                             <th>conditions</th>
                                             <th>countries</th>
                                             <th>places</th>
-
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -200,7 +163,6 @@
                                                <td>{{row["conditions"]}}</td>
                                                <td>{{row["rode"]}}</td>
                                                <td>{{row["places"]}}</td>
-
                                             </tr>
                                         {% endfor %}
                                         </tr>
@@ -218,15 +180,12 @@
                             <div class="col-md-12">
                                 <h4 class="text-center mb30">drivers</h4>
                                 <table class="table table-striped new-one">
-
                                     <thead>
                                         <tr>
                                             <th>id</th>
                                             <th>name</th>
                                             <th>surname</th>
                                             <th>phone number</th>
-
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -237,7 +196,6 @@
                                                <td>{{row["name"]}}</td>
                                                <td>{{row["surname"]}}</td>
                                                <td>{{row["number"]}}</td>
-
                                             </tr>
                                         {% endfor %}
                                         </tr>
@@ -266,13 +224,11 @@
             <div class="container-fluid pt20">
                 <div class="container">
                     <div class="row">
-
                         <!-- copyright start -->
                         <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
                             <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
                         </div>
                         <!-- copyright end -->
-
                         <!-- footer bottom start -->
                         <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
                             <p class="text-right">
@@ -282,7 +238,6 @@
                             </p>
                         </div>
                         <!-- footer bottom end -->
-
                     </div><!-- row end -->
                 </div><!-- container end -->
             </div><!-- container-fluid end -->
@@ -296,7 +251,6 @@
         
         <!-- Magnific Popup
         =====================================-->
-
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
         
@@ -307,23 +261,16 @@
         
         <!-- JQuery Main
         =====================================-->
-
         
         <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
-
         <script  src="{{ url_for('static', filename = 'js/main/parallax.min.js') }}"></script>
-
         <script  src="{{ url_for('static', filename = 'js/main/js/main/jquery.countTo.js') }}"></script>
-
         <script  src="{{ url_for('static', filename = 'js/main/owl.carousel.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/ion.rangeSlider.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/jquery.sticky.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/imagesloaded.pkgd.min.js') }}"></script>
-
-
         <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
-
         <script  src="{{ url_for('static', filename = 'js/js_inputs/new.js') }}"></script>
         
         

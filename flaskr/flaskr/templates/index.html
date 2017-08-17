@@ -215,79 +215,54 @@
         
         <!-- General Content Area
         ===================================== -->
-        <div id="general-content-1" class="pt100 pb100">
-            <div class="container">
-                <div class="row">
-                    
-                    <!-- left content start -->
-                    <div class="col-md-5">
-                        <div class="general-content">
-                            <h3 class="mb25">
-                                <small class="color-red">Mobile Optimized</small>
-                                Support for All Mobile Devices
-                            </h3>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
-                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia 
-                                non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <a class="button button-md button-pasific hover-ripple-out" href="{{ url_for('list') }}">More Details</a>
-                            
-                            <div class="clearfix"></div>
-                        </div>
+       
+{% for row in rowss%}
+<div id="general-content-1" class="pt100 pb100">
+
+<div class="container">
+        <table>
+            <tbody>
+
+                <tr>
+             
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='img/other/img-other-2.png') }}" alt="browser iphone" class="img-responsive center-block">
                     </div>
                     <!-- left content end -->
                     
                     <!-- right content start -->
-                    <div class="col-md-6 left-hover">
-                    
-                       <!--
+                    <div class="col-md-5 col-md-push-1">
+                        <div class="general-content">
+                            <h3 class="mb25">
+                                <small class="color-red">small info</small>
+                            </h3>
+                       
+                            <table class="table table-striped new-one">
 
-
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                                    </ol>
-
-                               <div class="albums-tab-thumb sim-anim-9">
-
-                                    <img src="assets\img\blog\10.jpg"           class="all studio img-a-left2" id="img-changed_8"/>
-                                    <img src="assets\img\blog\img-blog-1.jpg"   class="all studio img-a-left2" id="img-changed_7"/>
-                                    <img src="assets\img\blog\10.jpg"           class="all studio img-a-left2" id="img-changed_6"/>
-                                    <img src="assets\img\blog\img-blog-1.jpg"   class="all studio img-a-left2" id="img-changed_5"/>
-                                    <img src="assets\img\blog\10.jpg"           class="all studio img-a-left2" id="img-changed_4"/>
-                                    <img src="assets\img\blog\img-blog-1.jpg"   class="all studio img-a-left2" id="img-changed_3">
-                                    <img src="assets\img\blog\10.jpg"           class="all studio img-a-left2" id="img-changed_2"/>
-                                    <img src="assets\img\blog\img-blog-1.jpg"   class="all studio img-a-left2" id="img-changed_1"/>
-                                    <img src="assets\img\blog\10.jpg"           class="all studio img-a-left1" id="img-changed_0"/>
-                                </div>
-
-
-
-                             -->
-                                
-                                 <div class="albums-tab-thumb sim-anim-9">
-                                    <img class="all studio img-a-left2" id="img-changed_8" onclick="stop_1(this.id)" src="{{ url_for('static', filename='img/blog/10.jpg') }}"/>
-                                    <img class="all studio img-a-left2" id="img-changed_7" onclick="stop_1(this.id)" src="{{ url_for('static', filename='img/blog/img-blog-1.jpg') }}"/>
-                                    <img src="{{ url_for('static', filename='img/blog/10.jpg') }}" class="all studio img-a-left2" id="img-changed_6"   onclick="stop_1(this.id)"/>
-                                    <img src="{{ url_for('static', filename='img/blog/img-blog-1.jpg') }}" class="all studio img-a-left2" id="img-changed_5"   onclick="stop_1(this.id)"/>
-                                    <img src="{{ url_for('static', filename='img/blog/10.jpg') }}" class="all studio img-a-left2" id="img-changed_4"   onclick="stop_1(this.id)"/>
-                                    <img src="{{ url_for('static', filename='img/blog/img-blog-1.jpg') }}"  class="all studio img-a-left2" id="img-changed_3"   onclick="stop_1(this.id)">
-                                    <img src="{{ url_for('static', filename='img/blog/10.jpg') }}" class="all studio img-a-left2" id="img-changed_2"   onclick="stop_1(this.id)"/>
-                                    <img src="{{ url_for('static', filename='img/blog/img-blog-1.jpg') }}" class="all studio img-a-left2" id="img-changed_1"   onclick="stop_1(this.id)"/>
-                                    <img src="{{ url_for('static', filename='img/blog/10.jpg') }}" class="all studio img-a-left1" id="img-changed_0"   onclick="stop_1(this.id)" />
-                                </div>
-                                 
-                               
-
-                 
+                                    <thead>
+                                         <br>
+                                         <br>
+                                         <br>
+                                         <br>
+                                        places:  <a value={{rowss["id"]}}>{{row["places"]}}</a><br><br>
+                                        conditions:  <a value={{rowss["id"]}}>{{row["conditions"]}}</a><br><br>
+                                        rode:  <a value={{rowss["id"]}}>{{row["rode"]}}</a>
+                                        
+                                    </tbody>
+                                </table>
+                            
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
-                    <!-- right content end -->
-                    
-                </div>
-            </div>
-        </div>
+                    <!-- right content end -->          
+                </tr>
 
+            
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
                
                
 
@@ -310,10 +285,21 @@
                                 <small class="color-red">eCommerce</small>
                                 Online Store Ready
                             </h3>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
-                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia 
-                                non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                            <a class="button button-md button-pasific hover-ripple-out">Purchase Now</a>
+                            <table class="table table-striped new-one">
+
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>  asd </tr>
+                                        
+                                    </tbody>
+                                </table>
                             
                             <div class="clearfix"></div>
                         </div>
