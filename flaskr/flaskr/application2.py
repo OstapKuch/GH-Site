@@ -4,9 +4,15 @@ from flask_mail import Mail, Message
 import sqlite3
 import sqlite3 as sql
 from werkzeug import secure_filename
-app = Flask(__name__)
-mail=Mail(app)
+import os
 
+
+UPLOAD_FOLDER = 'static\img\cars'
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+mail=Mail(app)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'ostapco220@gmail.com'
@@ -295,11 +301,27 @@ def accept():
 
 
 
-	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
-		
+
+	f = request.files['file']
+	con = sql.connect("228")
+	c = con.cursor()
+	c.execute("SELECT MAX(id) from Photos")
+	em = [(item[0]) for item in c.fetchall()]
+	c.execute("SELECT MAX(id) from Cars")
+	mm = [(item[0]) for item in c.fetchall()]
+
+	em = em[0]
+	mm = mm[0]
+	em = em + 1
+	mm = mm + 1
+
+	print(em)
+	print(mm)
+	filename = secure_filename('file')
+	c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(mm, filename))
+	con.commit()
+	f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+	return 'file uploaded successfully'
+	
