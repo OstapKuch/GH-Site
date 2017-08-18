@@ -226,7 +226,9 @@
                 <tr>
              
                     <div class="col-md-6">
-                        <img src="{{ url_for('static', filename='img/other/img-other-2.png') }}" alt="browser iphone" class="img-responsive center-block">
+                     {% if filename %}
+                    <img src="{{ url_for('send_file', filename=filename) }}" class="img-responsive center-block"/>
+                    {% endif %}
                     </div>
                     <!-- left content end -->
                     
@@ -242,7 +244,7 @@
                                 <table class="table table-striped new-one sizee">
                                     <tbody>
                                         <tr>
-                                        {% for row in rowss %}
+                                     
                                             <tr>
                                                 <th>places</th>
                                                 <td>{{row["places"]}}</td>
@@ -258,7 +260,7 @@
                                                <td>{{row["rode"]}}</td>
                                             </tr>
                                             
-                                        {% endfor %}
+                                   
                                         </tr>
                                     </tbody>
                                 </table>

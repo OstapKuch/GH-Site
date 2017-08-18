@@ -1,5 +1,4 @@
 from flask import Flask, session, render_template, request, url_for, escape, redirect, send_from_directory
-from flask_login import current_user
 from flask_mail import Mail, Message
 import sqlite3
 import os
@@ -8,7 +7,7 @@ from werkzeug import secure_filename
 
 
 
-UPLOAD_FOLDER = 'static\img\cars'
+UPLOAD_FOLDER = 'static/img/cars/'
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -198,18 +197,7 @@ def regcar():
 @app.route('/regdrive')
 def regdrive():
     return render_template('registr_driver.html')
-@app.route('/reggcar', methods=['GET', 'POST'])
-def reggcar():
-    conditions = request.form['conditions']
-    countries = request.form['countries']
-    places = request.form['places']
-    print(places)
-    conn = sqlite3.connect('228')
-    c = conn.cursor()
-    c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
-    conn.commit()
-    conn.close()
-    return redirect(url_for('list2'))
+
 @app.route('/reggdriver', methods=['GET', 'POST'])
 def reggdriver():
     name = request.form['name']
@@ -249,7 +237,11 @@ def list3():
    print(idd)
    dd = len(idd)
    dd = dd/2
-   return render_template('index.html',rowss = rowss,dd = dd)
+   cur.execute("SELECT photo from Photos where id_car=1")
+   filename = [str(item[0]) for item in cur.fetchall()]
+   filename = filename[0]
+   print(filename)
+   return render_template('index.html',rowss = rowss,dd = dd,filename=filename)
 
 
 
@@ -299,10 +291,20 @@ def upload():
         filename = secure_filename(file.filename)
         
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
-        filenames.append(strip)
-         
+        filenames.append(filename)
   return render_template('registr_car.html', filenames=filenames)
-
+@app.route('/reggcar', methods=['GET', 'POST'])
+def reggcar():
+    conditions = request.form['conditions']
+    countries = request.form['countries']
+    places = request.form['places']
+    print(places)
+    conn = sqlite3.connect('228')
+    c = conn.cursor()
+    c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('list2'))
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -314,7 +316,12 @@ def uploaded_file(filename):
   return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
+@app.route('/send_file/<filename>')
+def send_file(filename):
+  print(filename)
 
+  print(UPLOAD_FOLDER)
+  return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
   
   
 
