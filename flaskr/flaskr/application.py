@@ -226,22 +226,15 @@ def list2():
 
 @app.route('/list3', methods=['GET', 'POST'])
 def list3():
-   idd = 0
    con = sql.connect("228")
    con.row_factory = sql.Row
    cur = con.cursor()
    cur.execute("select * from Cars")
    rowss = cur.fetchall();
-   cur.execute("select id from Cars")
-   idd = [item[0] for item in cur.fetchall()]
-   print(idd)
-   dd = len(idd)
-   dd = dd/2
-   cur.execute("SELECT photo from Photos where id_car=1")
+   cur.execute("SELECT photo from Photos")
    filename = [str(item[0]) for item in cur.fetchall()]
-   filename = filename[0]
    print(filename)
-   return render_template('index.html',rowss = rowss,dd = dd,filename=filename)
+   return render_template('index.html',rowss = rowss,filename=filename)
 
 
 
