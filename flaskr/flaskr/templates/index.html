@@ -217,7 +217,7 @@
         ===================================== -->
        
 {% for row in rowss%}
-{% for filename in filename %}
+
    
 <div id="general-content-1" class="pt100 pb100">
 
@@ -229,7 +229,7 @@
              
                     <div class="col-md-6">
                   
-                    <img src="{{ url_for('send_file', filename = filename ) }}" class="img-responsive center-block">
+                    <img src="{{ url_for('send_file', filename = row['photo'] ) }}" class="img-responsive center-block">
           
                     </div>
                     <!-- left content end -->
@@ -255,7 +255,7 @@
                                             </tr>
                                             <tr>
                                                <th>conditions</th>
-                                               <td>{{row["rode"]}}</td>
+                                               <td>{{row["conditions"]}}</td>
                                             </tr>
                                             <tr>
                                                <th>rode</th>
@@ -267,6 +267,11 @@
                                     </tbody>
                                 </table>
                                 </a>
+                                <form action="list">
+                                    <p><button class="button-o button-lg button-rounded button-danger hover-radial-out" id={{row['id']}} >More info</button>
+                               
+                                 </form>
+                                
                             <div class="clearfix"></div>
                             </div>
                         </div>
@@ -281,7 +286,7 @@
         </div>
         </div>
             {% endfor %}
-            {% endfor %}
+         
                
 
         <!-- General Content Area

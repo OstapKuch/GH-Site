@@ -131,7 +131,7 @@
         <div id="general-content-2" class="bg-gray pt100 pb100">
             <div class="container">
                 <div class="row">
-                  <form action="reggcar" method="post" class="clasicc"> 
+                  <form action="reggcar" method="post" class="clasicc" enctype="multipart/form-data"> 
                    
                   <div class="reg">
                         <span class="input input--manami">
@@ -158,19 +158,18 @@
                         </span>
 
                         <br>
+                         <input type="file" multiple="" name="file[]" class="span3" /><br />
                         <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
                     </div>
                         
                     
                    </form>   
-                   <form action="upload" method="post" enctype="multipart/form-data">
-                        <input type="file" multiple="" name="file[]" class="span3" /><br />
+                   <form action="upload" method="post" >
+                       
                         <input type="submit" value="Upload"  class="span2">
                     </form>
                       <ul>
-                    {% for file in filenames %}
-                      <li><a href="{{url_for('uploaded_file', filename=file)}}">{{file}}</a></li>
-                    {% endfor %}
+                 
                     </ul>
                 </div><!-- row end -->
             </div><!-- container end -->

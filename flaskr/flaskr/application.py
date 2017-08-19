@@ -229,12 +229,9 @@ def list3():
    con = sql.connect("228")
    con.row_factory = sql.Row
    cur = con.cursor()
-   cur.execute("select * from Cars")
-   rowss = cur.fetchall();
-   cur.execute("SELECT photo from Photos")
-   filename = [str(item[0]) for item in cur.fetchall()]
-   print(filename)
-   return render_template('index.html',rowss = rowss,filename=filename)
+   cur.execute("SELECT * from Cars")
+   rowss = cur.fetchall()
+   return render_template('index.html',rowss = rowss)
 
 
 
@@ -253,51 +250,9 @@ def deny():
    return redirect(url_for('list2'))
 
 
-@app.route('/upload', methods = ['GET', 'POST'])
-def upload():
 
-  uploaded_files = request.files.getlist("file[]")
-  filenames = []
-  for file in uploaded_files:
-    
-    if file and allowed_file(file.filename):
-      
-       
-        con = sql.connect("228")
-        c = con.cursor()
-        c.execute("SELECT MAX(id) from Photos")
-        em = [(item[0]) for item in c.fetchall()]
-        c.execute("SELECT MAX(id) from Cars")
-        mm = [(item[0]) for item in c.fetchall()]
-        print(em)
-        mm = mm[0]
-        em = em[0]
-        em = em + 1
-       
 
-        mm = mm + 1
-        strip = os.path.splitext(file.filename)
-        strip = str(em) + str(strip[1])
-        c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(mm, strip))
-        con.commit()
-        
-        filename = secure_filename(file.filename)
-        
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
-        filenames.append(filename)
-  return render_template('registr_car.html', filenames=filenames)
-@app.route('/reggcar', methods=['GET', 'POST'])
-def reggcar():
-    conditions = request.form['conditions']
-    countries = request.form['countries']
-    places = request.form['places']
-    print(places)
-    conn = sqlite3.connect('228')
-    c = conn.cursor()
-    c.execute("INSERT INTO Cars (conditions, rode, places) VALUES (?, ?, ?)",(conditions, countries, places))
-    conn.commit()
-    conn.close()
-    return redirect(url_for('list2'))
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -356,4 +311,36 @@ def accept():
    con.commit()
    con.close()
    return redirect(url_for('list2'))
+
+
+
+
+@app.route('/reggcar', methods=['GET', 'POST'])
+def reggcar():
+  uploaded_files = request.files.getlist("file[]")
+  filenames = []
+  for file in uploaded_files:
+    if file and allowed_file(file.filename):
+      conditions = request.form['conditions']
+      countries = request.form['countries']
+      places = request.form['places']
+      print(places)
+      conn = sqlite3.connect('228')
+      c = conn.cursor()
+      c.execute("SELECT MAX(id) from Cars")
+      em = [(item[0]) for item in c.fetchall()]
+      print(em)
+      em = em[0]
+      em = em + 1
+      strip = os.path.splitext(file.filename)
+      strip = str(em) + str(strip[1])
+      c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, strip))
+      conn.commit()
+      conn.close()
+      filename = secure_filename(file.filename)        
+      file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
+      filenames.append(filename)
+      return render_template('registr_car.html', filenames=filenames)
+
+
 
