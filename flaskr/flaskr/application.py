@@ -1,17 +1,16 @@
 from flask import Flask, session, render_template, request, url_for, escape, redirect, send_from_directory
 from flask_mail import Mail, Message
+from werkzeug import secure_filename
 import sqlite3
 import os
 import sqlite3 as sql
-from werkzeug import secure_filename
+
 
 
 
 UPLOAD_FOLDER = 'static/img/cars/'
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 mail=Mail(app)
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['MAIL_SERVER']='smtp.gmail.com'
@@ -21,15 +20,13 @@ app.config['MAIL_PASSWORD'] = '123xer098'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-@app.route("/send")
-def send():
-   msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = ['ostapko220@gmail.com'])
-   msg.body = "Hello Flask message sent from Flask-Mail"
-   mail.send(msg)
-   return "Sent"
+
+
+
 @app.route("/")
 def load():
-    return render_template('index.html')
+    return redirect(url_for('list3'))
+
 @app.route('/connect', methods=['GET', 'POST'])
 def connect():
     if request.method == 'POST':
@@ -159,14 +156,20 @@ def confirm():
             c.close()
             print(em[0], pas[0], num[0])
             return render_template('sign in.html')
-@app.route('/list')
+@app.route('/list', methods=['GET', 'POST'])
 def list():
+   a = request.form.get('bus')
+   print(a)
    con = sql.connect("228")
    con.row_factory = sql.Row
    cur = con.cursor()
-   cur.execute("select * from Cars")
+   cur.execute("SELECT * from Cars WHERE id=?",([a]))
    rows = cur.fetchall();
-   return render_template('bus_pg_01.html',rows = rows)
+   cur.execute("SELECT * from Photos WHERE id_car=?",([a]))
+   phot = cur.fetchall();
+   return render_template('bus_pg_01.html',rows = rows, phot = phot)
+
+
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
@@ -318,29 +321,41 @@ def accept():
 @app.route('/reggcar', methods=['GET', 'POST'])
 def reggcar():
   uploaded_files = request.files.getlist("file[]")
+  f = request.files['files']
   filenames = []
+  conditions = request.form['conditions']
+  countries = request.form['countries']
+  places = request.form['places']
+  conn = sqlite3.connect('228')
+  c = conn.cursor()
+  c.execute("SELECT MAX(id) from Cars")
+  em = [(item[0]) for item in c.fetchall()]
+  print(em)
+  em = em[0]
+  em = em + 1
   for file in uploaded_files:
-    if file and allowed_file(file.filename):
-      conditions = request.form['conditions']
-      countries = request.form['countries']
-      places = request.form['places']
-      print(places)
-      conn = sqlite3.connect('228')
-      c = conn.cursor()
-      c.execute("SELECT MAX(id) from Cars")
-      em = [(item[0]) for item in c.fetchall()]
+    if file and allowed_file(file.filename):   
+      c.execute("SELECT MAX(id) from Photos")
+      mm = [(item[0]) for item in c.fetchall()]
       print(em)
-      em = em[0]
-      em = em + 1
+      mm = mm[0]
+      mm = mm + 1
       strip = os.path.splitext(file.filename)
-      strip = str(em) + str(strip[1])
-      c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, strip))
-      conn.commit()
-      conn.close()
+      strip = str(mm) + str(strip[1])
+      c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(em, strip))
       filename = secure_filename(file.filename)        
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
       filenames.append(filename)
-      return render_template('registr_car.html', filenames=filenames)
+
+  
+  st = os.path.splitext(f.filename)
+  st = str(em) + str(st[1])
+  filename = secure_filename(f.filename)        
+  f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
+  c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
+  conn.commit()
+  conn.close()
+  return render_template('registr_car.html', filenames=filenames)
 
 
 
