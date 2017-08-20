@@ -228,7 +228,7 @@
                                 <tr>
                                 {% for row in rows %}
                                     <tr>                            <form method="post" action="form">
-                                       <td name='aa3'>{{row["id"]}}</td>
+                                       <td name='aa3'  value={{row["id"]}}>{{row["id"]}}</td>
                                        <td>{{row["conditions"]}}</td>
                                        <td>{{row["rode"]}}</td>
                                        <td>{{row["places"]}}</td>
@@ -318,7 +318,9 @@
                                 </div>                                             
                                 <!-- website end -->
                                 <div class="col-sm-12 mt10 text-center">
-                                    <button type="submit" name="sendMessage">Send Message</button>
+                                 {% for row in rows %}
+                                    <button type="submit" name="sendMessage" id={{row["id"]}}>Send Message</button>
+                                    {% endfor %}
                                 </div>
                                 <!-- button end -->
                                 

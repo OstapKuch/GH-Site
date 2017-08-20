@@ -181,7 +181,7 @@ def form():
         conn = sqlite3.connect('228')
         c = conn.cursor()
         email = session['username']
-        car_id = row["id"]
+        
         c.execute('SELECT id FROM Users WHERE email=?', [email])
         id = [str(item[0]) for item in c.fetchall()]
         c.execute('SELECT name FROM Users WHERE email=?', [email])
@@ -194,10 +194,12 @@ def form():
         msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
         msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
         mail.send(msg)
+        car_id = request.form.get('sendMessage')
+        print(car_id)
         dest = request.form['destination']
         date = request.form['date']
         peop = request.form['people']
-        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(car_id, str(id), str(date), dest, peop))
+        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(car_id), str(id), str(date), dest, peop))
         conn.commit()
         return render_template('contact.html')
 
