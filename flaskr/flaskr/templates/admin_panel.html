@@ -121,7 +121,7 @@
                                                <td>{{row["car_id"]}}</td>
                                                <td>{{row["user_id"]}}</td>
 
-                                                 <td><form action="accept" method="post"><input type="number" id={{row["id"]}} value={{row["id"]}} name="inp"></input></form></td>
+                                                 <td><form action="accept" method="post"><input type="number" id={{row["id"]}} value={{row["driver_id"]}} name="inp"></input></td>
                                             
                                               
                                                <td>{{row["date"]}}</td>
@@ -129,7 +129,6 @@
                                                <td>{{row["price"]}}</td>
                                                <td>{{row["waylong"]}}</td>
                                                <td id="aa11">{{row["confirm"]}}</td>
-                                               <form action="accept" method="post">
                                                    <td><button id={{row["id"]}} name="but" value={{row["id"]}} class="button-3d button-xs button-square button-success"> </button></td>
                                                </form>
                                                <form action = "deny" method="post">
@@ -166,6 +165,8 @@
                                                <td>{{row["conditions"]}}</td>
                                                <td>{{row["rode"]}}</td>
                                                <td>{{row["places"]}}</td>
+                                                <form action = "deny1" method="post">
+                                               <td><button id={{row["id"]}}  value={{row["id"]}} name="but1" class="button-3d button-xs button-square button-danger"> </button></td></form>
                                             </tr>
                                         {% endfor %}
                                         </tr>
@@ -199,6 +200,8 @@
                                                <td>{{row["name"]}}</td>
                                                <td>{{row["surname"]}}</td>
                                                <td>{{row["number"]}}</td>
+                                               <form action = "deny2" method="post">
+                                               <td><button id={{row["id"]}}  value={{row["id"]}} name="but1" class="button-3d button-xs button-square button-danger"> </button></td></form>
                                             </tr>
                                         {% endfor %}
                                         </tr>

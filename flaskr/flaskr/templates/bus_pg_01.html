@@ -227,8 +227,8 @@
                             <tbody>
                                 <tr>
                                 {% for row in rows %}
-                                    <tr>
-                                       <td>{{row["id"]}}</td>
+                                    <tr>                            <form method="post" action="form">
+                                       <td name='aa3'>{{row["id"]}}</td>
                                        <td>{{row["conditions"]}}</td>
                                        <td>{{row["rode"]}}</td>
                                        <td>{{row["places"]}}</td>
@@ -248,9 +248,6 @@
         </div><!-- section testimonial end -->
         
       
-        <form action="forr" method="post">
-            <button>load</button>
-        </form>
         <!-- Contact Us Area
         =====================================-->
         <div id="contact" class="pt100 pb100 bg-grad-stellar">
@@ -301,7 +298,7 @@
                                     <small class="text-lowercase">Please complete the form and we will get back to you.</small>
                                 </h4>
                             </div>
-                            <form method="post" action="form">
+
                                 
                                 <!-- fullname start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">

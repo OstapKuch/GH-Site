@@ -170,12 +170,18 @@ def list():
    return render_template('bus_pg_01.html',rows = rows, phot = phot)
 
 
+
+
+
+
+
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
         conn = sqlite3.connect('228')
         c = conn.cursor()
         email = session['username']
+        car_id = row["id"]
         c.execute('SELECT id FROM Users WHERE email=?', [email])
         id = [str(item[0]) for item in c.fetchall()]
         c.execute('SELECT name FROM Users WHERE email=?', [email])
@@ -191,9 +197,21 @@ def form():
         dest = request.form['destination']
         date = request.form['date']
         peop = request.form['people']
-        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(str(id), str(id), str(date), dest, peop))
+        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people) VALUES (?, ?, ?, ?, ?)",(car_id, str(id), str(date), dest, peop))
         conn.commit()
         return render_template('contact.html')
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/regcar')
 def regcar():
     return render_template('registr_car.html')
@@ -252,6 +270,29 @@ def deny():
    con.close()
    return redirect(url_for('list2'))
 
+@app.route('/deny1', methods=['GET', 'POST'])
+def deny1():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   c = con.cursor()
+   d = request.form.get('but1')
+   print(d)
+   c.execute("DELETE from Cars where Cars.id=?",([d]))
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))
+
+@app.route('/deny2', methods=['GET', 'POST'])
+def deny2():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   c = con.cursor()
+   d = request.form.get('but1')
+   print(d)
+   c.execute("DELETE from Drivers where Drivers.id=?",([d]))
+   con.commit()
+   con.close()
+   return redirect(url_for('list2'))
 
 
 
@@ -304,13 +345,15 @@ def send_file(filename):
 @app.route('/accept', methods=['GET', 'POST'])
 def accept():
    con = sql.connect("228")
-   con.row_factory = sql.Row
    c = con.cursor()
    a = request.form.get('but')
-   l = request.form['inp']
-   c.execute("UPDATE Orders SET driver_id=? where Orders.id=?",([l],[a]))
    print(a)
-   c.execute("UPDATE Orders SET confirm=1 where Orders.id=?",([a]))
+   l = request.form['inp']
+
+   print(l)
+
+   c.execute("UPDATE Orders SET driver_id=?, confirm=1 where Orders.id=?",(l,a))
+   
    con.commit()
    con.close()
    return redirect(url_for('list2'))
