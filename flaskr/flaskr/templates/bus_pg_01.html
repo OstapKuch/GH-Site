@@ -207,8 +207,8 @@
 
 
          
-        <a href = "list">go back to home page</a>
-      </table>
+
+
         <div id="testimonial" class="pt75 pb75">
             <div class="container pt50">
                 <div class="row">
@@ -227,7 +227,7 @@
                             <tbody>
                                 <tr>
                                 {% for row in rows %}
-                                    <tr>                            <form method="post" action="form">
+                                    <tr>                           
                                        <td name='aa3'>{{row["id"]}}</td>
                                        <td>{{row["conditions"]}}</td>
                                        <td>{{row["rode"]}}</td>
@@ -253,7 +253,7 @@
         <div id="contact" class="pt100 pb100 bg-grad-stellar">
             <div class="container">
                 <div class="row">
-                    
+                    <form method="post" action="form">
                     <div class="col-md-6">
                         <div class="row">
                             
@@ -308,7 +308,7 @@
                                 
                                 <!-- email start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="date"  class="input-md input-rounded form-control" placeholder="Date" maxlength="100" required>
+                                    <input type="date" name="date"  class="input-md input-rounded form-control" placeholder="Date" maxlength="100" required>
                                 </div>                                        
                                  <!-- email end -->
                                 
