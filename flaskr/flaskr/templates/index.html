@@ -112,7 +112,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
                         <a class="navbar-brand page-scroll" href="#page-top">
-                            <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                            <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
@@ -121,7 +121,7 @@
                         <ul class="nav navbar-nav">
                            
 
-                            <li><a href="#">Home </a></li>
+                         
                             {% if session['username'] %}   
                                 {% if session['username'] == 'ostapko220@gmail.com' %}
                                 <li><a href="{{ url_for('list2') }}">Panel </a></li>
@@ -220,7 +220,7 @@
 
    
 <div id="general-content-1" class="pt100 pb100">
-
+<div class="raw">
 <div class="container">
         <table>
             <tbody>
@@ -229,7 +229,7 @@
              
                     <div class="col-md-6">
                   
-                    <img src="{{ url_for('send_file', filename = row['photo'] ) }}" class="img-responsive center-block">
+                    <img src="{{ url_for('send_file', filename = row['photo'] ) }}" class="img-responsive center-block indeximg">
           
                     </div>
                     <!-- left content end -->
@@ -238,12 +238,12 @@
                     <div class="col-md-5 col-md-push-1">
                         <div class="general-content">
                             <div class="reg">
-                            <h3 class="mb25">
-                                <small class="color-red">small info</small>
-                            </h3>
+                            <h1 class="text-capitalize color-red">
+                                Small Info
+                            </h1>
                        
                                 <a>
-                                <table class="table table-striped new-one sizee">
+                                <table class="table table-striped new-one sizee" align="center">
                                     <tbody>
                                         <tr>
                                      
