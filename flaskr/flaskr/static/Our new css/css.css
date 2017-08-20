@@ -7,3 +7,14 @@
 	max-width: 50%;
 
 }
+.flaticon {
+    width: 48px;
+    height: 48px;
+}
+
+.indeximg {
+	max-width: 85%;
+	
+	box-shadow: 0 5px 15px rgb(0, 0, 0);
+	border-radius:4px;
+}

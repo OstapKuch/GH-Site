@@ -244,7 +244,9 @@ PADDING STYLE
 .pt85   { padding-top: 85px; }    
 .pt90   { padding-top: 90px; }    
 .pt95   { padding-top: 95px; }    
-.pt100  { padding-top: 100px; }
+.pt100  { padding-top: 100px; 
+    border-bottom: 1px solid #ddd;
+}
 
 .pr0    { padding-right: 0px; }
 .pr5    { padding-right: 5px; }
