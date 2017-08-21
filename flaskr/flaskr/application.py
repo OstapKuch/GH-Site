@@ -34,29 +34,31 @@ def connect():
         a2 = request.form['password']
         a3 = "('" + a1 + "', '" + a2 + "')"
         t =  "('" + a1 + "',)"
-        print(t)
         a1 = str(a1)
-        print(a3)
         conn = sqlite3.connect('228')
         c = conn.cursor()
         c.execute('SELECT email, password FROM Users WHERE email=?', [a1])
         a = c.fetchall()
         c.execute('SELECT admin FROM Users WHERE email=?', [a1])
         b = c.fetchall()
-        print(a[0])
+        c.execute('SELECT admin FROM Users WHERE email=?', [a1])
+        g = [item[0] for item in c.fetchall()]
         b = b[0]
         b = str(b)
         y = a[0]
         y = str(y)
         a3 = str(a3)
-        print(b)
+        print(a1)
+        print(g)
+        arr = (a1, g[0])
+        print(arr)
         if b == '(0,)':
             l = "admin"
         else:
             l = 'user'
         if y == a3:
-            session['username'] = a1
-            print(session['username'])
+
+            session['username'] = arr
             return render_template('show_entries.html')
         else:
             return render_template('sign in.html')
@@ -100,7 +102,7 @@ def create():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    return render_template('index.html')
+    return redirect(url_for('list3'))
 @app.route('/contact')
 def contact():
     # remove the username from the session if it's there
@@ -180,7 +182,7 @@ def form():
     if request.method == 'POST':
         conn = sqlite3.connect('228')
         c = conn.cursor()
-        email = session['username']
+        email = session['username'][0]
         
         c.execute('SELECT id FROM Users WHERE email=?', [email])
         id = [str(item[0]) for item in c.fetchall()]
@@ -216,13 +218,15 @@ def form():
 
 @app.route('/regcar')
 def regcar():
-    return render_template('registr_car.html')
+    if session['username'][1] == 0:
+      return render_template('registr_car.html')
 @app.route('/regdrive')
 def regdrive():
     return render_template('registr_driver.html')
 
 @app.route('/reggdriver', methods=['GET', 'POST'])
 def reggdriver():
+  if session['username'][1] == 0:
     name = request.form['name']
     surname= request.form['surname']
     number = request.form['number']
@@ -235,16 +239,17 @@ def reggdriver():
     return redirect(url_for('list2'))
 @app.route('/list2', methods=['GET', 'POST'])
 def list2():
-   con = sql.connect("228")
-   con.row_factory = sql.Row
-   cur = con.cursor()
-   cur.execute("select * from Cars")
-   rowss = cur.fetchall();
-   cur.execute("select * from Orders")
-   rows = cur.fetchall();
-   cur.execute("select * from Drivers")
-   rowsss = cur.fetchall();
-   return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
+   if session['username'][1] == 0:
+     con = sql.connect("228")
+     con.row_factory = sql.Row
+     cur = con.cursor()
+     cur.execute("select * from Cars")
+     rowss = cur.fetchall();
+     cur.execute("select * from Orders")
+     rows = cur.fetchall();
+     cur.execute("select * from Drivers")
+     rowsss = cur.fetchall();
+     return render_template('admin_panel.html',rowss = rowss,rows = rows,rowsss = rowsss)
 
 
 @app.route('/list3', methods=['GET', 'POST'])
@@ -368,56 +373,57 @@ def accept():
 
 @app.route('/reggcar', methods=['GET', 'POST'])
 def reggcar():
-  uploaded_files = request.files.getlist("file[]")
-  f = request.files['files']
-  filenames = []
-  conditions = request.form['conditions']
-  countries = request.form['countries']
-  places = request.form['places']
-  conn = sqlite3.connect('228')
-  c = conn.cursor()
-  c.execute("SELECT MAX(id) from Cars")
-  em = [(item[0]) for item in c.fetchall()]
-  em = em[0]
-  em = em + 1
-  st = os.path.splitext(f.filename)
-  st = str(em) + str(st[1])
-  filename = secure_filename(f.filename)        
-  f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
-  c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
-  conn.commit()
-  conn.close()
-  conn = sqlite3.connect('228')
-  c = conn.cursor()
-  c.execute("SELECT MAX(id) from Cars")
-  em = [(item[0]) for item in c.fetchall()]
-  print(em)
-  em = em[0]
-  for file in uploaded_files:
-    if file and allowed_file(file.filename):  
-      conn = sqlite3.connect('228')
-      c = conn.cursor()
-      c.execute("SELECT MAX(id) from Photos")
-      mm = [(item[0]) for item in c.fetchall()]
-      print(em)
-      mm = mm[0]
-      mm = mm + 1
-      strip = os.path.splitext(file.filename)
-      strip = str(mm) + str(strip[1])
-      c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(em, strip))
-      filename = secure_filename(file.filename)        
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
-      filenames.append(filename)
-      conn.commit()
-      conn.close()
-  return render_template('registr_car.html', filenames=filenames)
+  if session['username'][1] == 0:
+    uploaded_files = request.files.getlist("file[]")
+    f = request.files['files']
+    filenames = []
+    conditions = request.form['conditions']
+    countries = request.form['countries']
+    places = request.form['places']
+    conn = sqlite3.connect('228')
+    c = conn.cursor()
+    c.execute("SELECT MAX(id) from Cars")
+    em = [(item[0]) for item in c.fetchall()]
+    em = em[0]
+    em = em + 1
+    st = os.path.splitext(f.filename)
+    st = str(em) + str(st[1])
+    filename = secure_filename(f.filename)        
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
+    c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
+    conn.commit()
+    conn.close()
+    conn = sqlite3.connect('228')
+    c = conn.cursor()
+    c.execute("SELECT MAX(id) from Cars")
+    em = [(item[0]) for item in c.fetchall()]
+    print(em)
+    em = em[0]
+    for file in uploaded_files:
+      if file and allowed_file(file.filename):  
+        conn = sqlite3.connect('228')
+        c = conn.cursor()
+        c.execute("SELECT MAX(id) from Photos")
+        mm = [(item[0]) for item in c.fetchall()]
+        print(em)
+        mm = mm[0]
+        mm = mm + 1
+        strip = os.path.splitext(file.filename)
+        strip = str(mm) + str(strip[1])
+        c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(em, strip))
+        filename = secure_filename(file.filename)        
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
+        filenames.append(filename)
+        conn.commit()
+        conn.close()
+    return render_template('registr_car.html', filenames=filenames)
 
 @app.route('/orders', methods=['GET', 'POST'])
 def orders():
   con = sql.connect("228")
   con.row_factory = sql.Row
   cur = con.cursor()
-  email = session['username']
+  email = session['username'][0]
   cur.execute('SELECT id FROM Users WHERE email=?', [email])
   idd = [str(item[0]) for item in cur.fetchall()]
   cur.execute("SELECT * from Orders WHERE user_id=?",(idd))
