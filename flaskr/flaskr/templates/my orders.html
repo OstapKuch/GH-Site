@@ -147,8 +147,12 @@
                                                        <td>{{row["destination"]}}</td>
                                                        <td>{{row["price"]}}</td>
                                                        <td>{{row["waylong"]}}</td>
-                                                       <td id="aa11">{{row["confirm"]}}</td>
-                                                          
+                                                       {% if row["confirm"] == 1%}
+                                                       <td id="aa11">confirmed</td>
+                                                       
+                                                       {% else %} 
+                                                       <td id="aa11">Not confirmed yet</td>
+                                                       {% endif %}
                                                        </form>
                                                        
                                                     </tr>
