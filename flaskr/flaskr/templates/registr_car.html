@@ -139,15 +139,17 @@
                    
                   <div class="reg">
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text" id="input-32" name="conditions" />
+                            <input class="input__field input__field--manami field-control" type="text" id="input-32" name="conditions"  required/>
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">conditions</span>
                             </label>
                         </span>
 
+
+
                         <br>
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text" id="input-32" name="countries" />
+                            <input class="input__field input__field--manami" type="text" id="input-32" name="countries" required/>
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">countries</span>
                             </label>
@@ -155,7 +157,7 @@
 
                         <br>
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="integer" id="input-32" name="places" />
+                            <input class="input__field input__field--manami" type="integer" id="input-32" name="places" pattern="[0-9]{1,2}" required/>
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">places</span>
                             </label>
@@ -179,7 +181,7 @@
                    
                   <div class="reg">
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text"  name="name" />
+                            <input class="input__field input__field--manami" type="text"  name="name" required/>
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">name</span>
                             </label>
@@ -187,7 +189,7 @@
 
                         <br>
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text"  name="surname" />
+                            <input class="input__field input__field--manami" type="text"  name="surname" required/>
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">surname</span>
                             </label>
@@ -195,7 +197,7 @@
 
                         <br>
                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="integer"  name="number" />
+                            <input class="input__field input__field--manami" type="tel"  name="number" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" placeholder="phone number" required />
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">phone number</span>
                             </label>
