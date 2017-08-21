@@ -82,7 +82,7 @@
                            
 
                             {% if session['username'] %}   
-                                {% if session['username'] == 'ostapko220@gmail.com' %}
+                                {% if session['username'][1] == 0 %}
                                 <li><a href="{{ url_for('list2') }}">Panel</a></li>
                                 {% endif %}
                             <li><a href="{{ url_for('logout') }}">Logout</a></li>
