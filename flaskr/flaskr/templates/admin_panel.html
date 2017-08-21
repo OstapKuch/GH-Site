@@ -93,12 +93,17 @@
        <!-- General Content Area
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">Orders</h4>
+                  <div class="container pt50 pb50 bb-dashed-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                          <li class="active"><a data-toggle="pill" href="#pilljustifiedHome">Orders</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified1">Cars</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified2">Drivers</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="pilljustifiedHome" class="tab-pane fade in active">
+
                                 <table class="table table-striped new-one">
                                     <thead>
                                         <tr>
@@ -118,15 +123,14 @@
                                         {% for row in rows %}
                                             <tr>
                                                <td>{{row["id"]}}</td>
-                                               <td>{{row["car_id"]}}</td>
+                                               <td><form  clas="aa" action="accept" method="post"><input type="number" id={{row["id"]}} value={{row["car_id"]}} name="inp1"></input></td>
                                                <td>{{row["user_id"]}}</td>
-                                                 <td><form action="accept" method="post"><input type="number" id={{row["id"]}} value={{row["driver_id"]}} name="inp"></input></td>
-                                            
-                                              
-                                               <td>{{row["date"]}}</td>
-                                               <td>{{row["destination"]}}</td>
-                                               <td>{{row["price"]}}</td>
-                                               <td>{{row["waylong"]}}</td>
+                                               <td><input clas="aa" type="text" value={{row["driver_id"]}} name="inp"></input></td>
+                                               <td><input clas="aa" type="text" value={{row["date"]}} name="inp2"></input></td>
+                                               <td><input clas="aa" type="text" value={{row["destination"]}} name="inp3"></input></td>
+                                               <td><input clas="aa" type="text" value={{row["price"]}} name="inp4"></input></td>
+                                               <td><input clas="aa" type="text" value={{row["waylong"]}} name="inp5"></input></td>
+
                                                <td id="aa11">{{row["confirm"]}}</td>
                                                    <td><button id={{row["id"]}} name="but" value={{row["id"]}} class="button-3d button-xs button-square button-success"> </button></td>
                                                </form>
@@ -137,16 +141,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
-                        </div>
-                    </div>
-            </div><!-- container end -->
-            <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">cars</h4>
+                            <div id="pilljustified1" class="tab-pane fade">
                                 <table class="table table-striped new-one">
                                     <thead>
                                         <tr>
@@ -172,17 +169,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
-                        </div>
-                    </div>
-            </div><!-- container end -->
-            <div class="container">
-                 <div id="testimonial" class="pt75 pb75">
-                    <div class="container pt50">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="text-center mb30">drivers</h4>
-                                <table class="table table-striped new-one">
+                            <div id="pilljustified2" class="tab-pane fade">
+                                 <table class="table table-striped new-one">
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -206,11 +194,12 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
-                            
                         </div>
                     </div>
-            </div><!-- container end -->
+                </div>
+            </div>
         </div><!-- section general info end -->
         
         

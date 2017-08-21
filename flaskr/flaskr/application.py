@@ -351,10 +351,15 @@ def accept():
    a = request.form.get('but')
    print(a)
    l = request.form['inp']
+   k = request.form['inp1']
+   j = request.form['inp2']
+   h = request.form['inp3']
+   g = request.form['inp4']
+   f = request.form['inp5']
 
    print(l)
 
-   c.execute("UPDATE Orders SET driver_id=?, confirm=1 where Orders.id=?",(l,a))
+   c.execute("UPDATE Orders SET car_id=?, date=?, price=?, destination=?, waylong=?, driver_id=?, confirm=1 where Orders.id=?",(k,j,g,h,f,l,a))
    
    con.commit()
    con.close()
@@ -401,6 +406,32 @@ def reggcar():
   conn.commit()
   conn.close()
   return render_template('registr_car.html', filenames=filenames)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/orders', methods=['GET', 'POST'])
+def orders():
+   con = sql.connect("228")
+   con.row_factory = sql.Row
+   cur = con.cursor()
+   email = session['username']
+   cur.execute('SELECT id FROM Users WHERE email=?', [email])
+   idd = [str(item[0]) for item in cur.fetchall()]
+   cur.execute("SELECT * from Orders WHERE user_id=?",(idd))
+   rows = cur.fetchall();
+   return render_template('my orders.html',rows = rows)
 
 
 
