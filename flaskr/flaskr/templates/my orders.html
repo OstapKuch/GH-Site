@@ -53,7 +53,15 @@
         
         <!-- Page Loader
         ===================================== -->
-    
+        <div id="pageloader">
+            <div class="loader-item">
+                <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
+            </div>
+        </div>
+        
+        <a href="#page-top" class="go-to-top">
+            <i class="fa fa-long-arrow-up"></i>
+        </a>
         
         <!-- Navigation Area
         ===================================== -->        
@@ -64,18 +72,25 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="#page-top">
-                             <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
                            
-                            <li><a href="{{ url_for('home') }}">Home </a></li>
-                            <li><a href="{{ url_for('regcar') }}">register new car </a></li>
-                            <li><a href="{{ url_for('regdrive') }}">register new driver </a></li>
- 
+
+                            {% if session['username'] %}   
+                                {% if session['username'] == 'ostapko220@gmail.com' %}
+                                <li><a href="{{ url_for('list2') }}">Panel</a></li>
+                                {% endif %}
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                            <li><a href="{{ url_for('registr') }}">Register</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
                         </ul>
                     </div>
             </nav>

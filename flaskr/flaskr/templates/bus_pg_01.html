@@ -129,8 +129,8 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="#page-top">
-                            <img src="{{ url_for('static', filename='img/logo/logo-default.png') }}"    alt="logo">
+                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
@@ -139,9 +139,17 @@
                         <ul class="nav navbar-nav">
                            
 
-                            <li><a href="index.html">Home </a></li>
-                            <li><a href="map.html">Cars </a></li>
-                            <li><a href="contact.html">Contacts </a></li>
+                            {% if session['username'] %}   
+                                {% if session['username'] == 'ostapko220@gmail.com' %}
+                                <li><a href="{{ url_for('list2') }}">Panel</a></li>
+                                {% endif %}
+                            <li><a href="{{ url_for('orders') }}">My orders</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                            <li><a href="{{ url_for('registr') }}">Register</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
                                
                             
 

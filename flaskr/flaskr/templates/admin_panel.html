@@ -64,17 +64,18 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="#page-top">
-                             <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
                            
-                            <li><a href="{{ url_for('home') }}">Home </a></li>
-                            <li><a href="{{ url_for('regcar') }}">register new car </a></li>
-                            <li><a href="{{ url_for('regdrive') }}">register new driver </a></li>
+
+                            <li><a href="{{ url_for('regcar') }}">register</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
  
                         </ul>
                     </div>
