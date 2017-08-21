@@ -280,6 +280,9 @@ def deny1():
    d = request.form.get('but1')
    print(d)
    c.execute("DELETE from Cars where Cars.id=?",([d]))
+   c.execute("DELETE from Photos where id_car=?",([d]))
+
+
    con.commit()
    con.close()
    return redirect(url_for('list2'))
@@ -351,15 +354,10 @@ def accept():
    a = request.form.get('but')
    print(a)
    l = request.form['inp']
-   k = request.form['inp1']
-   j = request.form['inp2']
-   h = request.form['inp3']
-   g = request.form['inp4']
-   f = request.form['inp5']
 
    print(l)
 
-   c.execute("UPDATE Orders SET car_id=?, date=?, price=?, destination=?, waylong=?, driver_id=?, confirm=1 where Orders.id=?",(k,j,g,h,f,l,a))
+   c.execute("UPDATE Orders SET driver_id=?, confirm=1 where Orders.id=?",(l,a))
    
    con.commit()
    con.close()
@@ -380,11 +378,25 @@ def reggcar():
   c = conn.cursor()
   c.execute("SELECT MAX(id) from Cars")
   em = [(item[0]) for item in c.fetchall()]
-  print(em)
   em = em[0]
   em = em + 1
+  st = os.path.splitext(f.filename)
+  st = str(em) + str(st[1])
+  filename = secure_filename(f.filename)        
+  f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
+  c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
+  conn.commit()
+  conn.close()
+  conn = sqlite3.connect('228')
+  c = conn.cursor()
+  c.execute("SELECT MAX(id) from Cars")
+  em = [(item[0]) for item in c.fetchall()]
+  print(em)
+  em = em[0]
   for file in uploaded_files:
-    if file and allowed_file(file.filename):   
+    if file and allowed_file(file.filename):  
+      conn = sqlite3.connect('228')
+      c = conn.cursor()
       c.execute("SELECT MAX(id) from Photos")
       mm = [(item[0]) for item in c.fetchall()]
       print(em)
@@ -396,42 +408,19 @@ def reggcar():
       filename = secure_filename(file.filename)        
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
       filenames.append(filename)
-
-  
-  st = os.path.splitext(f.filename)
-  st = str(em) + str(st[1])
-  filename = secure_filename(f.filename)        
-  f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
-  c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
-  conn.commit()
-  conn.close()
+      conn.commit()
+      conn.close()
   return render_template('registr_car.html', filenames=filenames)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @app.route('/orders', methods=['GET', 'POST'])
 def orders():
-   con = sql.connect("228")
-   con.row_factory = sql.Row
-   cur = con.cursor()
-   email = session['username']
-   cur.execute('SELECT id FROM Users WHERE email=?', [email])
-   idd = [str(item[0]) for item in cur.fetchall()]
-   cur.execute("SELECT * from Orders WHERE user_id=?",(idd))
-   rows = cur.fetchall();
-   return render_template('my orders.html',rows = rows)
-
-
+  con = sql.connect("228")
+  con.row_factory = sql.Row
+  cur = con.cursor()
+  email = session['username']
+  cur.execute('SELECT id FROM Users WHERE email=?', [email])
+  idd = [str(item[0]) for item in cur.fetchall()]
+  cur.execute("SELECT * from Orders WHERE user_id=?",(idd))
+  rows = cur.fetchall();
+  return render_template('my orders.html',rows = rows)
 
