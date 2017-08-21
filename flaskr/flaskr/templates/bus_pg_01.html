@@ -308,7 +308,7 @@
                                 
                                 <!-- email start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="date"  class="input-md input-rounded form-control" placeholder="Date" maxlength="100" required>
+                                    <input type="date" name="date"  class="input-md input-rounded form-control" placeholder="Date" maxlength="100" required>
                                 </div>                                        
                                  <!-- email end -->
                                 
@@ -319,7 +319,7 @@
                                 <!-- website end -->
                                 <div class="col-sm-12 mt10 text-center">
                                  {% for row in rows %}
-                                    <button type="submit" name="sendMessage" id={{row["id"]}}>Send Message</button>
+                                    <button type="submit" name="sendMessage" value={{row["id"]}}>Send Message</button>
                                     {% endfor %}
                                 </div>
                                 <!-- button end -->
