@@ -129,8 +129,17 @@
        <!-- General Content Area
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container">
+      <div class="container pt50 pb50 bb-dashed-1">
                 <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                          <li class="active"><a data-toggle="pill" href="#pilljustifiedHome">register car</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified1">register driver</a></li>
+
+
+                        </ul>
+                        <div class="tab-content">
+                            <div id="pilljustifiedHome" class="tab-pane fade in active">
                   <form action="reggcar" method="post" class="clasicc" enctype="multipart/form-data"> 
                    
                   <div class="reg">
@@ -169,11 +178,46 @@
                        
                         <input type="submit" value="Upload"  class="span2">
                     </form>
-                      <ul>
-                 
-                    </ul>
-                </div><!-- row end -->
-            </div><!-- container end -->
+                            </div>
+                            <div id="pilljustified1" class="tab-pane fade">
+ <form action="reggdriver" method="post" class="clasicc"> 
+                   
+                  <div class="reg">
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="name" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">name</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="surname" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">surname</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="integer"  name="number" />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">phone number</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
+                    </div>
+                        
+                    
+                   </form>   
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div><!-- section general info end -->
         
         
