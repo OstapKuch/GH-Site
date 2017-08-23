@@ -10,9 +10,10 @@ import sqlite3 as sql
 
 UPLOAD_FOLDER = 'static/img/cars/'
 app = Flask(__name__)
+app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mail=Mail(app)
-app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'ostapco220@gmail.com'
@@ -48,10 +49,7 @@ def connect():
         y = a[0]
         y = str(y)
         a3 = str(a3)
-        print(a1)
-        print(g)
         arr = (a1, g[0])
-        print(arr)
         if b == '(0,)':
             l = "admin"
         else:
@@ -81,7 +79,6 @@ def create():
         b = str(b)
         a = a + b
         c= c + 1
-    print(a)
     if request.method == 'POST':
         email = request.form['email']
         pas = request.form['password']
@@ -91,13 +88,21 @@ def create():
         adm = 0
         conn = sqlite3.connect('228')
         c = conn.cursor()
-        c.execute("INSERT INTO Users_temp (email, number, name, surname, admin, code, password) VALUES (?, ?, ?, ?, ?, ?,?)",(email, num, name, surname, adm, a, pas))
-        conn.commit()
-        c.close()
-        msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
-        msg.body = "Dear "+ name +", its your security code:  " + a + " Please enter it in confirm field to finish registration."
-        mail.send(msg)
-        return render_template('confirm.html')
+        c.execute("SELECT email from Users WHERE email='ostapco220@gmail.com'")
+        em = [str(item[0]) for item in c.fetchall()]
+        print(len(em[0]))
+        if len(em[0]) < 1:
+          c.execute("INSERT INTO Users_temp (email, number, name, surname, admin, code, password) VALUES (?, ?, ?, ?, ?, ?,?)",(email, num, name, surname, adm, a, pas))
+          conn.commit()
+          c.close()
+          msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
+          msg.body = "Dear "+ name +", its your security code:  " + a + " Please enter it in confirm field to finish registration."
+          mail.send(msg)
+          return render_template('confirm.html')
+        else: 
+          error = ("This email is already in use")
+          return render_template('registr.html',error=error)
+         
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
@@ -117,14 +122,12 @@ def confirm():
     if request.method == 'POST':
         a1 = request.form['code']
         t =  "('" + a1 + "',)"
-        print(t)
         a1 = str(a1)
         conn = sqlite3.connect('228')
         c = conn.cursor()
         c.execute('SELECT code FROM Users_temp WHERE code=?', [a1])
         a = c.fetchall()
         c.close()
-        print(a[0])
         y = a[0]
         y = str(y)
         t = str(t)
@@ -143,25 +146,18 @@ def confirm():
             sur = [str(item[0]) for item in c.fetchall()]
             c.close()
             adm = 1
-            print(em[0], pas[0], num[0], nam[0], sur[0])
             f = em[0]
             f = str(f)
-            print(f)
-            print(em, pas, num, nam, sur, adm)
             conn = sqlite3.connect('228')
             c = conn.cursor()
-            print(em, pas, num, nam, sur, adm)
             c.execute("INSERT INTO Users (email, password, number, name, surname, admin) VALUES (?, ?, ?, ?, ?, ?)",(em[0], pas[0], num[0], nam[0], sur[0], adm))
-            print(em[0], pas[0], num[0])
             c.execute('DELETE FROM Users_temp WHERE email=?', [f])
             conn.commit()
             c.close()
-            print(em[0], pas[0], num[0])
             return render_template('sign in.html')
 @app.route('/list', methods=['GET', 'POST'])
 def list():
-   a = request.form.get('bus')
-   print(a)
+   a = request.form.get('bus')  
    con = sql.connect("228")
    con.row_factory = sql.Row
    cur = con.cursor()
@@ -197,7 +193,6 @@ def form():
         msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
         mail.send(msg)
         car_id = request.form.get('sendMessage')
-        print(car_id)
         dest = request.form['destination']
         date = request.form['date']
         peop = request.form['people']
@@ -230,7 +225,6 @@ def reggdriver():
     name = request.form['name']
     surname= request.form['surname']
     number = request.form['number']
-    print(number)
     conn = sqlite3.connect('228')
     c = conn.cursor()
     c.execute("INSERT INTO Drivers (name, surname, number) VALUES (?, ?, ?)",(name, surname, number))
@@ -271,7 +265,6 @@ def deny():
    con.row_factory = sql.Row
    c = con.cursor()
    d = request.form.get('but1')
-   print(d)
    c.execute("DELETE from Orders where Orders.id=?",([d]))
    con.commit()
    con.close()
@@ -283,7 +276,6 @@ def deny1():
    con.row_factory = sql.Row
    c = con.cursor()
    d = request.form.get('but1')
-   print(d)
    c.execute("DELETE from Cars where Cars.id=?",([d]))
    c.execute("DELETE from Photos where id_car=?",([d]))
 
@@ -298,7 +290,6 @@ def deny2():
    con.row_factory = sql.Row
    c = con.cursor()
    d = request.form.get('but1')
-   print(d)
    c.execute("DELETE from Drivers where Drivers.id=?",([d]))
    con.commit()
    con.close()
@@ -308,21 +299,15 @@ def deny2():
 
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
-
 
 @app.route('/registr_car.html/<filename>')
 def uploaded_file(filename):  
   return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
+
 @app.route('/send_file/<filename>')
 def send_file(filename):
-  print(filename)
-
-  print(UPLOAD_FOLDER)
   return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
   
   
@@ -357,13 +342,8 @@ def accept():
    con = sql.connect("228")
    c = con.cursor()
    a = request.form.get('but')
-   print(a)
    l = request.form['inp']
-
-   print(l)
-
    c.execute("UPDATE Orders SET driver_id=?, confirm=1 where Orders.id=?",(l,a))
-   
    con.commit()
    con.close()
    return redirect(url_for('list2'))
@@ -397,7 +377,6 @@ def reggcar():
     c = conn.cursor()
     c.execute("SELECT MAX(id) from Cars")
     em = [(item[0]) for item in c.fetchall()]
-    print(em)
     em = em[0]
     for file in uploaded_files:
       if file and allowed_file(file.filename):  
@@ -405,7 +384,6 @@ def reggcar():
         c = conn.cursor()
         c.execute("SELECT MAX(id) from Photos")
         mm = [(item[0]) for item in c.fetchall()]
-        print(em)
         mm = mm[0]
         mm = mm + 1
         strip = os.path.splitext(file.filename)
