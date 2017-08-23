@@ -289,11 +289,11 @@
                                 </h4>
                             </div>
 
-                                
+                                <form action="form" method="post">
                                 <!-- fullname start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label>Route</label>
-                                    <input type="text" name="descriptionnation"  class="input-md input-rounded form-control" placeholder="Route" maxlength="100" required>
+                                    <input type="text" name="destination"  class="input-md input-rounded form-control" placeholder="Route" maxlength="100" required>
                                 </div>                                           
                                 <!-- fullname end -->
                                 
@@ -318,15 +318,17 @@
                                 </div>                                           
                                 <!-- website end -->
                                 <div class="col-sm-12 mt10 text-center">
+                                
                                  {% for row in rows %}
                                     <button type="submit" name="sendMessage" value={{row["id"]}}>Send Message</button>
                                     {% endfor %}
+                                </form>
+
                                 </div>
                                 <!-- button end -->
                                 
            
 
-                            </form>
                         </div><!-- div contact end -->
                     </div><!-- col end -->
                     

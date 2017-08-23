@@ -197,7 +197,7 @@ def form():
         date = request.form['date']
         peop = request.form['people']
         date2 = request.form['date2']
-        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people, date2) VALUES (?, ?, ?, ?, ?, ?)",(car_id, id[0], str(date), dest, peop, date2))
+        c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people, data2) VALUES (?, ?, ?, ?, ?, ?)",(car_id, id[0], str(date), dest, peop, date2))
         conn.commit()
         return render_template('contact.html')
 
@@ -349,10 +349,12 @@ def accept():
    h = request.form['inp3']
    g = request.form['inp4']
    f = request.form['inp5']
+   d = request.form['inp6']
+
 
    print(l)
 
-   c.execute("UPDATE Orders SET car_id=?, date=?, price=?, destination=?, waylong=?, driver_id=?, confirm=1 where Orders.id=?",(k,j,g,h,f,l,a))
+   c.execute("UPDATE Orders SET car_id=?, date=?, price=?, destination=?, waylong=?, driver_id=?, data2=?, confirm=1 where Orders.id=?",(k,j,g,h,f,l,d,a))
    con.commit()
    con.close()
    return redirect(url_for('list2'))
