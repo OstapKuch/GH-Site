@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         
 
         <!-- Load Core CSS 
@@ -35,7 +35,7 @@
 
          <!-- Css for hover gallery 
         =====================================-->
-        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}"/>
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
 
         <!-- Load Our Additional CSS 
@@ -49,15 +49,12 @@
     
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
-        
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
+
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
-
         
-
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
@@ -68,15 +65,6 @@
         
         <!-- Page Loader
         ===================================== -->
-        <div id="pageloader">
-            <div class="loader-item">
-                <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
-            </div>
-        </div>
-        
-        <a href="#page-top" class="go-to-top">
-            <i class="fa fa-long-arrow-up"></i>
-        </a>
     
         
         <!-- Navigation Area
@@ -89,8 +77,8 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="#page-top">
-                             <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
@@ -99,13 +87,9 @@
                         <ul class="nav navbar-nav">
                            
 
-                            <li><a href="{{ url_for('home') }}">Home </a></li>
-                            {% if session['username'] %}
-                            <li><a href="{{ url_for('logout') }}">Logout </a></li>
-                            {% else %}
-                            <li><a href="{{ url_for('login') }}">Sign in </a></li>
-                            <li><a href="{{ url_for('registr') }}">Register </a></li>
-                            {% endif %}
+
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
+                               
                             
 
                         </ul>
@@ -130,27 +114,20 @@
         <div id="general-content-2" class="bg-gray pt100 pb100">
             <div class="container ">
                 <div class="row">
-                  <div class="reg">
+                 
 
-                    <form action="connect" method="post">
+                    <form action="confirm" method="post">
                     <div class="reg">
+                        <h4>On your email was sent vertification code. Enter it to complete registration.</h4>
                          <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text" id="input-37" name="email" />
-                            <label class="input__label input__label--manami" for="input-37">
-                                <span class="input__label-content input__label-content--manami">Email</span>
-                            </label>
-                        </span>
-                        <br>
-                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text" id="input-38" name="password" />
+                            <input class="input__field input__field--manami" type="text" id="input-38" name="code" />
                             <label class="input__label input__label--manami" for="input-38">
-                                <span class="input__label-content input__label-content--manami">Password</span>
+                                <span class="input__label-content input__label-content--manami">Enter code</span>
                             </label>
                         </span>
-                        </div>
-                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>Log in</button>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>confirm</button>
                     </div>
-                    </form>               
+                    </form>              
                     
                 </div><!-- row end -->
             </div><!-- container end -->

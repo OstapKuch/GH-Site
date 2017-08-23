@@ -59,7 +59,7 @@ def connect():
         if y == a3:
 
             session['username'] = arr
-            return render_template('show_entries.html')
+            return redirect(url_for('list3'))
         else:
             return render_template('sign in.html')
 @app.route('/registr', methods=['GET', 'POST'])

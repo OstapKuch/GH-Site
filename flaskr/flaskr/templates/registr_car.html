@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
     <head>
         <title>Pasific Site Template | Carousel One</title>        
-        <meta name="description" content="">
-        <meta name="keywords" content="">
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        
+        <meta name="description" content="Simple ideas for enhancing text input interactions" />
+        <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
 
         <!-- Load Core CSS 
         =====================================-->
@@ -43,22 +42,34 @@
 
 
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
         
     
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
+        <!-- Load JS
+        HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        WARNING: Respond.js doesn't work if you view the page via file://
+        =====================================-->
+
+
+
+
+
 
 
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
-        
-        <!-- Load JS
-        HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-        WARNING: Respond.js doesn't work if you view the page via file://
-        =====================================-->
+
+
+
+
+
+
 
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
@@ -77,8 +88,8 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="#page-top">
-                             <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
+                       <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
                             Lviv-tour
                         </a>
                     </div>
@@ -87,13 +98,9 @@
                         <ul class="nav navbar-nav">
                            
 
-                            <li><a href="{{ url_for('home') }}">Home </a></li>
-                            {% if session['username'] %}
-                            <li><a href="{{ url_for('logout') }}">Logout </a></li>
-                            {% else %}
-                            <li><a href="{{ url_for('login') }}">Sign in </a></li>
-                            <li><a href="{{ url_for('registr') }}">Register </a></li>
-                            {% endif %}
+                            <li><a href="{{ url_for('list2') }}">panel</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
                                
                             
 
@@ -117,24 +124,94 @@
        <!-- General Content Area
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container ">
+      <div class="container pt50 pb50 bb-dashed-1">
                 <div class="row">
-                 
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                          <li class="active"><a data-toggle="pill" href="#pilljustifiedHome">register car</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified1">register driver</a></li>
 
-                    <form action="confirm" method="post">
-                    <div class="reg">
-                         <span class="input input--manami">
-                            <input class="input__field input__field--manami" type="text" id="input-38" name="code" />
-                            <label class="input__label input__label--manami" for="input-38">
-                                <span class="input__label-content input__label-content--manami">Enter code</span>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div id="pilljustifiedHome" class="tab-pane fade in active">
+                  <form action="reggcar" method="post" class="clasicc" enctype="multipart/form-data"> 
+                   
+                  <div class="reg">
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami field-control" type="text" id="input-32" name="conditions"  required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">conditions</span>
                             </label>
                         </span>
-                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>confirm</button>
+
+
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text" id="input-32" name="countries" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">countries</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="integer" id="input-32" name="places" pattern="[0-9]{1,2}" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">places</span>
+                            </label>
+                        </span>
+
+                        <br>
+                         <input type="file" multiple="" name="file[]" class="span3" />
+                         <input type="file" name="files" class="span3" />
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
                     </div>
-                    </form>              
+                        
                     
-                </div><!-- row end -->
-            </div><!-- container end -->
+                   </form>   
+
+                            </div>
+                            <div id="pilljustified1" class="tab-pane fade">
+ <form action="reggdriver" method="post" class="clasicc"> 
+                   
+                  <div class="reg">
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="name" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">name</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="surname" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">surname</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="tel"  name="number" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" placeholder="phone number" required />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">phone number</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
+                    </div>
+                        
+                    
+                   </form>   
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div><!-- section general info end -->
         
         
@@ -175,7 +252,7 @@
             </div><!-- container-fluid end -->
         </div><!-- footer end -->
         
-        <script  src="{{ url_for('static', filename = 'js/js_inputs/classie.js') }}"></script>  
+        <script  src="{{ url_for('static', filename = 'js/js_inputs/classie.js') }}"></script>         
         <!-- JQuery Core
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
@@ -195,10 +272,14 @@
         <!-- JQuery Main
         =====================================-->
 
+        
         <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
+
         <script  src="{{ url_for('static', filename = 'js/main/parallax.min.js') }}"></script>
+
         <script  src="{{ url_for('static', filename = 'js/main/js/main/jquery.countTo.js') }}"></script>
+
         <script  src="{{ url_for('static', filename = 'js/main/owl.carousel.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/ion.rangeSlider.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/jquery.sticky.js') }}"></script>
@@ -206,6 +287,9 @@
 
 
         <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+
         <script  src="{{ url_for('static', filename = 'js/js_inputs/new.js') }}"></script>
+        
+        
     </body>
 </html>
