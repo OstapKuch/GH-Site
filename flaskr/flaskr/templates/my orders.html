@@ -129,9 +129,9 @@
                                                             <th>driver id</th>
                                                             <th>departure date</th>
                                                             <th>arraving date</th>
-                                                            <th>destination</th>
+                                                            <th>route</th>
                                                             <th>price</th>
-                                                            <th>way long</th>
+                                                            <th>distance</th>
                                                             <th>confirm</th>
                                                          </tr>
                                                      </thead>
@@ -140,12 +140,12 @@
                                                     {% for row in rows %}
                                                         <tr>
 
-                                                            <td><a data-toggle="tooltip" title="{{row["car_id"]}}, {{row["date"]}}" >{{row["car_id"]}}</a></td>
+                                                        <td>{{row["car_id"]}}</td>
                                                         <td>{{row["driver_id"]}}</td>
                                                     
                                                       
                                                        <td>{{row["date"]}}</td>
-                                                       <td>{{row["date2"]}}</td>
+                                                       <td>{{row["data2"]}}</td>
                                                        <td>{{row["destination"]}}</td>
                                                        <td>{{row["price"]}}</td>
                                                        <td>{{row["waylong"]}}</td>

@@ -283,12 +283,13 @@
                     <div class="col-md-6">
                         <div class="contact contact-us-one bg-gray">
                             <div class="col-sm-12 col-xs-12 text-center mb20 bg-gray">
+                                 {% if session['username']%}
                                 <h4 class="pb25 bb-solid-1 text-uppercase">
-                                    Get in Touch
+                                    Ordering a car
                                     <small class="text-lowercase">Please complete the form and we will get back to you.</small>
                                 </h4>
                             </div>
-
+                                
                                 <form action="form" method="post">
                                 <!-- fullname start -->                            
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -323,7 +324,15 @@
                                     <button type="submit" name="sendMessage" value={{row["id"]}}>Send Message</button>
                                     {% endfor %}
                                 </form>
-
+                                {% else %}
+                                <form action="login" method="post">
+                                <div class="col-sm-12 mt10 text-center">
+                                    <h3>Please sign in to order a car.</h3>
+                                    <br>
+                                    <button type="submit" class="button-o button-lg button-rounded button-danger hover-radial-out rebbb" >Sign in</button>
+                                </div>
+                                </form>
+                                {% endif %}
                                 </div>
                                 <!-- button end -->
                                 

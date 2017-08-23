@@ -165,9 +165,10 @@ def list():
    rows = cur.fetchall();
    cur.execute("SELECT * from Photos WHERE id_car=?",([a]))
    phot = cur.fetchall();
-   return render_template('bus_pg_01.html',rows = rows, phot = phot)
-
-
+   if len(rows) > 0:
+    return render_template('bus_pg_01.html',rows = rows, phot = phot)
+   else:
+    return redirect(url_for('list3'))
 
 
 
