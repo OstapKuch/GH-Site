@@ -246,7 +246,7 @@ def form():
         date2 = request.form['date2']
         c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people, data2) VALUES (?, ?, ?, ?, ?, ?)",(car_id, id[0], str(date), dest, peop, date2))
         conn.commit()
-        return render_template('contact.html')
+        return render_template('index.html')
 
 
 
