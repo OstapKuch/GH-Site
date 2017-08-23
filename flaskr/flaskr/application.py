@@ -88,7 +88,7 @@ def create():
         adm = 0
         conn = sqlite3.connect('228')
         c = conn.cursor()
-        c.execute("SELECT email from Users WHERE email='ostapco220@gmail.com'")
+        c.execute("SELECT email from Users WHERE email=?",(email))
         em = [str(item[0]) for item in c.fetchall()]
         print(len(em[0]))
         if len(em[0]) < 1:
@@ -102,6 +102,52 @@ def create():
         else: 
           error = ("This email is already in use")
           return render_template('registr.html',error=error)
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/regadm', methods=['GET', 'POST'])
+def regadm():
+  if request.method == 'POST':
+      email = request.form['email']
+      pas = request.form['password']
+      num = request.form['number']
+      name = request.form['name']
+      surname = request.form['surname']
+      adm = 0
+      conn = sqlite3.connect('228')
+      c = conn.cursor()
+
+
+      c.execute("INSERT INTO Users (email, number, name, surname, admin, password) VALUES (?, ?, ?, ?, ?,?)",(email, num, name, surname, adm, pas))
+      conn.commit()
+      c.close()
+      return render_template('index.html')
+
          
 @app.route('/logout')
 def logout():
@@ -233,6 +279,8 @@ def reggdriver():
     conn.commit()
     conn.close()
     return redirect(url_for('list2'))
+
+
 @app.route('/list2', methods=['GET', 'POST'])
 def list2():
    if session['username'][1] == 0:
