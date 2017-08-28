@@ -1,10 +1,11 @@
 .reg {
-	text-align: center; 
+	text-align: center;
 }
 
 .sizee {
 
-	max-width: 50%;
+	max-width: 100%;
+	margin: auto;
 
 }
 .flaticon {
@@ -14,7 +15,6 @@
 
 .indeximg {
 	max-width: 85%;
-	
 	box-shadow: 0 5px 15px rgb(0, 0, 0);
 	border-radius:4px;
 }
@@ -22,3 +22,55 @@
 .aa {
 	max-width: 5%;
 }
+.icofoot {
+
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 5px;
+	border: 1px solid;
+}
+.sizez {
+
+	max-width: 90%;
+	margin: auto;
+}
+
+.loghh {
+
+  font-size: 9vw;
+  max-block-size: 9vw;
+  color: #f74e3a;
+}
+
+.logh {
+
+  font-size: 3vw;
+  color: #f74e3a;
+
+}
+
+.fotd {
+
+   height: 100vh;
+   display: table;
+   max-width: 100%;
+   margin: auto;
+
+}
+.fotdd {
+
+   vertical-align: middle;
+   display: table-cell;
+
+}
+.fotimg {
+    background-image: url("http://static.wixstatic.com/media/0ec0b6_3f7ba580b5464f139a2d1f7e64128d96~mv2_d_2800_1867_s_2.jpg");
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+}
+.fotcov {
+
+background-color: rgba(0, 0, 0, 0.39);
+}
+

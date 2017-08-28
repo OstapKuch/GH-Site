@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>lviv trans tour</title>          
+        <title>lviv trans tour</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta charset="utf-8">
@@ -14,11 +14,11 @@
         <meta name="description" content="Simple ideas for enhancing text input interactions" />
         <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
         <meta name="author" content="Codrops" />
-        
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
-    
-        <!-- Load Main CSS 
+
+        <!-- Load Main CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fonts_input/font-awesome-4.2.0/css/font-awesome.min.css') }}"/>
 
 
-        <link rel="shortcut icon" href="../favicon.ico">
+         <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
 
 
 
@@ -34,12 +34,6 @@
 
 
 
-       
-
-
-
-
- 
 
 
 
@@ -47,35 +41,41 @@
 
 
 
-        <!-- Load Magnific Popup CSS 
+
+
+
+
+
+
+        <!-- Load Magnific Popup CSS
         =====================================-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>        
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>              
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup-zoom-gallery.css') }}"/>
-        
-        <!-- Load OWL Carousel CSS 
+
+        <!-- Load OWL Carousel CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
 
-         <!-- Css for hover gallery 
+         <!-- Css for hover gallery
         =====================================-->
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
 
-        <!-- Load Our Additional CSS 
+        <!-- Load Our Additional CSS
          =====================================-->
 
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
-        
-    
+
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
-        
+
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
@@ -106,7 +106,7 @@
 
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
-        
+
            <!-- Page Loader
         ===================================== -->
         <div id="pageloader">
@@ -114,14 +114,14 @@
                 <img src="{{ url_for('static', filename='img/other/puff.svg') }}"       alt="page loader">
             </div>
         </div>
-        
+
         <a href="#page-top" class="go-to-top">
             <i class="fa fa-long-arrow-up"></i>
         </a>
-        
-        
+
+
         <!-- Navigation Area
-        ===================================== -->        
+        ===================================== -->
         <div class="container navbar-container">
             <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
 
@@ -131,27 +131,26 @@
                         </button>
                         <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
                              <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
-                            Lviv-tour
+                            Головна
                         </a>
                     </div>
 
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
-                           
 
-                            {% if session['username'] %}   
+
+                            {% if session['username'] %}
                                 {% if session['username'][1] == 0 %}
-                                <li><a href="{{ url_for('list2') }}">Panel</a></li>
+                                <li><a href="{{ url_for('list2') }}">Панель</a></li>
                                 {% endif %}
-                            <li><a href="{{ url_for('orders') }}">My orders</a></li>
-                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('orders') }}">Млї замовлення</a></li>
+                            <li><a href="{{ url_for('logout') }}">Вихід</a></li>
                             {% else %}
-                            <li><a href="{{ url_for('login') }}">Sign in</a></li>
-                            <li><a href="{{ url_for('registr') }}">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Вхід</a></li>
                             {% endif %}
-                            <li><a href="{{ url_for('contact') }}">About us</a></li>
-                               
-                            
+                            <li><a href="{{ url_for('aboutus') }}">Контакти</a></li>
+
+
 
                         </ul>
 
@@ -159,37 +158,37 @@
 
             </nav>
         </div>
-        
-        
-   
-                    
-                 
-        
-       
-       
-        
-        
-         
-       
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Portfolio Area
         ===================================== -->
         <div id="portfolioGrid">
             <div class="pt50">&nbsp;</div>
             <div class="container-fluid bg-gray pt30">
-                
+
                 <div class="row">
                     <div class="col-md-12">
-                        
+
                         <!-- filters start -->
-                    
+
                         <!-- filters end -->
-                        
+
                         <div class="portfolio center-block">
-                            
+
                             <!-- portfolio item one start -->
-                              
-                            {% for row in phot %}                      
+
+                            {% for row in phot %}
                             <div class="portfolio-item col-lg-3 col-md-4 col-sm-6 col-xs-12 joomla html">
                                 <a href="{{ url_for('send_file', filename = row['photo'] ) }}" class="magnific-popup">
                                     <span class="glyphicon glyphicon-search hover-bounce-out"></span>
@@ -198,270 +197,205 @@
                             </div>
                             {% endfor %}
                             <!-- portfolio item eight end -->
-       
+
                         </div><!-- portfolio end -->
-                        
+
                     </div><!-- col-md-12 end -->
                 </div><!-- row end -->
             </div><!-- container end -->
         </div><!-- section portfolio end -->
-        
-        
-        
-        
+
+
+
+
         <!-- Testimonial Area
         ===================================== -->
-     
+
 
 
 
 
 
         </div><!-- section testimonial end -->
-        
-      
+
+
         <!-- Contact Us Area
         =====================================-->
-        <div id="contact" class="pt100 pb100">
+
             <div class="container">
-                <div class="row">
-                    
+                <div class="row pb50">
+
                     <div class="col-md-6">
                         <div class="row">
-                            
-                            <!-- title start -->
-                            <div class="col-md-12 mb50">
+                            <div id="contact" class="pt50 pb50">
 
-                        
-                            </div>
+
+
+
                             <!-- title end -->
-                            
-                            <!-- contact info start -->
-                            <br>
-                            <br>
 
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                            <!-- contact info start -->
+
+
+
 
                                {% for row in rows%}
                             <div class="col-md-12 col-sm-12 col-xs-12">
 
-                            <table class="table table-striped new-one sizee">
+                            <table class="table table-striped new-one sizez">
                                     <tbody>
                                         <tr>
-                                     
+
                                             <tr>
-                                                <th>places</th>
+                                                <th>кількість місьць</th>
                                                 <td>{{row["places"]}}</td>
-                                                
-                                                
+
+
                                             </tr>
                                             <tr>
-                                               <th>conditions</th>
+                                               <th>умови</th>
                                                <td>{{row["conditions"]}}</td>
                                             </tr>
                                             <tr>
-                                               <th>rode</th>
+                                               <th>шлях</th>
                                                <td>{{row["rode"]}}</td>
                                             </tr>
-                                            
-                                   
+
+
                                         </tr>
                                     </tbody>
                                 </table>
                                                             </div>
+                                                            </div>
+
 
             {% endfor %}
-                            
+
                             <!-- contact info end -->
-                            
+                            <br>
+                            <br>
                         </div><!-- row left end -->
                     </div><!-- col left end -->
-                    
+
                     <div class="col-md-6">
+                    <div id="contact" class="pt50 pb50">
                         <div class="contact contact-us-one bg-gray">
                             <div class="col-sm-12 col-xs-12 text-center mb20 bg-gray">
                                  {% if session['username']%}
                                 <h4 class="pb25 bb-solid-1 text-uppercase">
-                                    Ordering a car
-                                    <small class="text-lowercase">Please complete the form and we will get back to you.</small>
+                                    Замовлення машини
+                                    <small class="text-lowercase">Будь ласка заповніть форму і ми обов'язково звяжемося з вами.</small>
                                 </h4>
                             </div>
-                                
+
                                 <form action="form" method="post">
-                                <!-- fullname start -->                            
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label>Route</label>
-                                    <input type="text" name="destination"  class="input-md input-rounded form-control" placeholder="Route" maxlength="100" required>
-                                </div>                                           
-                                <!-- fullname end -->
-                                
-                                <!-- email start -->                            
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label>Date of start</label>
-                                    <input type="date" name="date"  class="input-md input-rounded form-control" placeholder="Date of start" maxlength="100" required>
-                                </div>                                        
-                                 <!-- email end -->
-                                
-                                <!-- website start -->                        
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label>Number of people</label>
 
-                                    <input type="integer" name="people"  class="input-md input-rounded form-control" placeholder="Number of people" maxlength="100">
+                                <div>
+                                <label>Маршрут</label>
+                                    <input type="text" name="destination"  class="input-md input-rounded form-control" placeholder="Маршрут" maxlength="100" required>
                                 </div>
-                                  
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label>Date of end</label>
 
-                                    <input type="date" name="date2"  class="input-md input-rounded form-control" placeholder="Date of end" maxlength="100" required>
-                                </div>                                           
+                                <div>
+                                <label>Дата відправлення</label>
+                                    <input type="date" name="date"  class="input-md input-rounded form-control"  maxlength="100" required>
+                                </div>
+
+
+
+                                <div>
+                                <label>Дата поверняння</label>
+
+                                    <input type="date" name="date2"  class="input-md input-rounded form-control"  maxlength="100" required>
+                                </div>
+                                <div>
+                                <label>Кількість людей</label>
+
+                                    <input type="integer" name="people"  class="input-md input-rounded form-control" placeholder="Кількість людей" maxlength="100">
+                                </div>
                                 <!-- website end -->
                                 <div class="col-sm-12 mt10 text-center">
-                                
+
                                  {% for row in rows %}
-                                    <button type="submit" name="sendMessage" value={{row["id"]}}>Send Message</button>
+                                    <button type="submit" name="sendMessage" value={{row["id"]}}>Відправити</button>
                                     {% endfor %}
                                 </form>
                                 {% else %}
                                 <form action="login" method="post">
-                                <div class="col-sm-12 mt10 text-center">
-                                    <h3>Please sign in to order a car.</h3>
+                                <div class="form-group reg">
+                                    <h3>Будь ласка ввійдіть у особистий кабінет щоб зробити замовлення.</h3>
                                     <br>
-                                    <button type="submit" class="button-o button-lg button-rounded button-danger hover-radial-out rebbb" >Sign in</button>
+                                    <button type="submit" class="button-o button-lg button-rounded button-danger hover-radial-out rebbb" >Вхід</button>
                                 </div>
                                 </form>
                                 {% endif %}
                                 </div>
                                 <!-- button end -->
-                                
-           
+
+
 
                         </div><!-- div contact end -->
                     </div><!-- col end -->
-                    
+
                 </div><!-- row end -->
-            </div><!-- container end -->            
+               </div>
         </div><!-- section contact end -->
-        
-        
+
+
         <!-- Clients Area
         ===================================== -->
         <div id="client" class="bg-gray pt50 pb20">
             <div class="container">
                 <div class="row">
-                    
-                  
-        
+
+
+
         <!-- footer Area
         ===================================== -->
-        <div id="footer" class="footer-two pt50">
-            <div class="container-fluid bb-solid-1">
-                <div class="container pb35">
-                    <div class="row">
-                        
-                        <!-- footer about start -->
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <h6 class="font-montserrat text-uppercase color-dark">About Us</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit morbi sagittis.
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-                        </div>
-                        <!-- footer about end -->
-                        
-                        <!-- footer menu one start -->
-                        <div class="col-md-2 col-md-offset-1 col-sm-3 col-xs-4">
-                            <h6 class="font-montserrat text-uppercase color-dark">Menu</h6>
-                            <ul class="no-icon-list">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Service</a></li>
-                                <li><a href="#">Member</a></li>
-                            </ul>
-                        </div>
-                        <!-- footer menu one end -->
-                        
-                        <!-- footer menu two start -->
-                        <div class="col-md-2 col-sm-3 col-xs-4">
-                            <h6 class="font-montserrat text-uppercase color-dark">Learn more</h6>
-                            <ul class="no-icon-list">
-                                <li><a href="#">Tour</a></li>
-                                <li><a href="#">Pricing</a></li>
-                                <li><a href="#">New Features</a></li>
-                                <li><a href="#">Payment</a></li>
-                            </ul>
-                        </div>
-                        <!-- footer menu two end -->
-                        
-                        <!-- footer menu three start -->
-                        <div class="col-md-2 col-sm-3 col-xs-4">
-                            <h6 class="font-montserrat text-uppercase color-dark">Support</h6>
-                            <ul class="no-icon-list">
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Knowledgebase</a></li>
-                                <li><a href="#">Forum</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <!-- footer menu three end -->
-                        
-                        <!-- footer social icons start -->
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h6 class="font-montserrat text-uppercase color-dark">Social Media</h6>
-                            <div class="social social-two">
-                                <a href="#"><i class="fa fa-twitter color-blue"></i></a>
-                                <a href="#"><i class="fa fa-facebook color-primary"></i></a>
-                                <a href="#"><i class="fa fa-linkedin color-blue"></i></a><br><br>
-                                <a href="#"><i class="fa fa-github color-dark"></i></a>
-                                <a href="#"><i class="fa fa-pinterest color-red"></i></a>
-                            </div>
-                        </div>
-                        <!-- footer social icons end -->
 
-                    </div><!-- row end -->
-                </div><!-- container end -->
-            </div><!-- container-fluid end -->
-            
-            <div class="container-fluid pt20">
+        <div class="container-fluid pt20 bg-gray">
                 <div class="container">
                     <div class="row">
 
                         <!-- copyright start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
-                            <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
+                        <div class="pull-left">
+
+                            <br>
+                            <h3 class="font-pacifico text-left">Ви також можете знайти нас тут: <a target="_blank" href="https://www.facebook.com/roman.kuch.1?fref=ts" ><i class="fa fa-facebook color-primary icofoot"></i></a> </h3>
+                            <br>
+                            <br>
                         </div>
                         <!-- copyright end -->
 
                         <!-- footer bottom start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                            <p class="text-right">
-                                <a href="#" class="mr20">Privacy Policy</a>
-                                <a href="#" class="mr20">Term of Use</a>
-                                <a href="#" class="mr50">Site Map</a>
-                            </p>
+                        <div class="pull-right">
+                            <div class="pull-right">
+                                <h3 class="font-pacifico text-left">Tel: +38-067-670-8177</h3>
+                                <h3 class="font-pacifico text-left">Email: lviv.trans.tour@gmail.com</h3>
+                                <br>
+                                <br>
+                            </div>
                         </div>
                         <!-- footer bottom end -->
 
                     </div><!-- row end -->
                 </div><!-- container end -->
             </div><!-- container-fluid end -->
-        </div><!-- footer end -->
-        
-        
+
+
                 <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
-        
+
         <!-- Magnific Popup
         =====================================-->
 
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
-        
+
         <!-- Progress Bars
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar-main.js') }}"></script>
-        
+
         <!-- JQuery Main
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
@@ -474,8 +408,8 @@
         <script  src="{{ url_for('static', filename = 'js/main/imagesloaded.pkgd.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/js-hover-gallery/changing_pic.js') }}"></script>
 
-        
-        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script> 
-        
+
+        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+
     </body>
 </html>

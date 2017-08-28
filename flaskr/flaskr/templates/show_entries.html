@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>lviv trans tour</title>         
+        <title>lviv trans tour</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        
 
-        <!-- Load Core CSS 
+
+        <!-- Load Core CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
-    
-        <!-- Load Main CSS 
+
+        <!-- Load Main CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/hover.css') }}"/>
-        
-        <!-- Load Magnific Popup CSS 
+
+        <!-- Load Magnific Popup CSS
         =====================================-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>        
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>              
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup-zoom-gallery.css') }}"/>
-        
-        <!-- Load OWL Carousel CSS 
+
+        <!-- Load OWL Carousel CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
 
-         <!-- Css for hover gallery 
+         <!-- Css for hover gallery
         =====================================-->
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}"/>
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
 
-        <!-- Load Our Additional CSS 
+        <!-- Load Our Additional CSS
          =====================================-->
-
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
-        
-    
+
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
-        
+
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
@@ -57,7 +57,7 @@
 
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
-        
+
         <!-- Page Loader
         ===================================== -->
         <div id="pageloader">
@@ -65,15 +65,15 @@
                 <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
             </div>
         </div>
-        
+
         <a href="#page-top" class="go-to-top">
             <i class="fa fa-long-arrow-up"></i>
         </a>
-    
-        
+
+
         <!-- Navigation Area
-        ===================================== -->        
-       
+        ===================================== -->
+
         <div class="container navbar-container">
             <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
 
@@ -83,13 +83,13 @@
                         </button>
                         <a class="navbar-brand page-scroll" href="#page-top">
                              <img alt="logo" src="{{ url_for('static', filename='img/logo/logo-default.png') }}"/>
-                            Lviv-tour
+                            lviv trans tour
                         </a>
                     </div>
 
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
-                           
+
 
                             <li><a href="{{ url_for('home') }}">Home </a></li>
                             {% if session['username'] %}
@@ -98,7 +98,7 @@
                             <li><a href="{{ url_for('login') }}">Sign in </a></li>
                             <li><a href="{{ url_for('registr') }}">Register </a></li>
                             {% endif %}
-                            
+
 
                         </ul>
 
@@ -107,83 +107,84 @@
             </nav>
         </div>
 
-        
-   
-                    
-                 
-        
-       
-       
-        
-        
-       
+
+
+
+
+
+
+
+
+
+
        <!-- General Content Area
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
             <div class="container ">
                 <div class="row">
-                
-                    <h1 class="text-uppercase">you are logged in</h1>  
-                    
+
+                    <h1 class="text-uppercase">you are logged in</h1>
+
                 </div><!-- row end -->
             </div><!-- container end -->
         </div><!-- section general info end -->
-        
-        
-     
-        
-     
-      
-       
-        
-        
+
+
+
+
+
+
+
+
+
         <!-- footer Area
         ===================================== -->
-        <div id="footer" class="footer-two pt50">
-            
-            
-            <div class="container-fluid pt20">
+        <div class="container-fluid pt20 bg-gray">
                 <div class="container">
                     <div class="row">
 
                         <!-- copyright start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
-                            <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
+                        <div class="pull-left">
+
+                            <br>
+                            <h3 class="font-pacifico text-left">You can also find us here: <a target="_blank" href="https://www.facebook.com/roman.kuch.1?fref=ts" ><i class="fa fa-facebook color-primary icofoot"></i></a> </h3>
+                            <br>
+                            <br>
                         </div>
                         <!-- copyright end -->
 
                         <!-- footer bottom start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                            <p class="text-right">
-                                <a href="#" class="mr20">Privacy Policy</a>
-                                <a href="#" class="mr20">Term of Use</a>
-                                <a href="#" class="mr50">Site Map</a>
-                            </p>
+                        <div class="pull-right">
+                            <div class="pull-right">
+                                <h3 class="font-pacifico text-left">Tel: +38-067-670-8177</h3>
+                                <h3 class="font-pacifico text-left">Email: lviv.trans.tour@gmail.com</h3>
+                                <br>
+                                <br>
+                            </div>
                         </div>
                         <!-- footer bottom end -->
 
                     </div><!-- row end -->
                 </div><!-- container end -->
             </div><!-- container-fluid end -->
-        </div><!-- footer end -->
-        
-        
+
+
         <!-- JQuery Core
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
-        
+
         <!-- Magnific Popup
         =====================================-->
 
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
-        
+
         <!-- Progress Bars
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar-main.js') }}"></script>
-        
+
         <!-- JQuery Main
         =====================================-->
 

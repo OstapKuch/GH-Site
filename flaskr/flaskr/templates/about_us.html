@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <title>lviv trans tour</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
+        <meta charset="utf-8">
+        <meta name="author" content="Harry Boo">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="description" content="Simple ideas for enhancing text input interactions" />
+        <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
+
+        <!-- Load Core CSS
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
+
+        <!-- Load Main CSS
+        =====================================-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main/hover.css') }}"/>
+
+
+        <!-- Load Our Additional CSS
+         =====================================-->
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
+        <!-- Load JS
+        HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        WARNING: Respond.js doesn't work if you view the page via file://
+        =====================================-->
+
+
+
+
+
+
+
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/>
+
+
+
+
+
+
+
+    </head>
+    <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
+
+        <!-- Page Loader
+        ===================================== -->
+
+
+        <!-- Navigation Area
+        ===================================== -->
+
+        <div class="container navbar-container">
+            <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
+                            Головна
+                        </a>
+                    </div>
+
+                    <div class="navbar-collapse collapse navbar-main-collapse">
+                        <ul class="nav navbar-nav">
+
+
+
+
+                            {% if session['username'] %}
+                            <li><a href="{{ url_for('orders') }}">Мої замовлення</a></li>
+                            <li><a href="{{ url_for('logout') }}">Вихід </a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}">Вхід </a></li>
+                            {% endif %}
+
+
+
+                        </ul>
+
+                    </div>
+
+            </nav>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- footer Area
+        ===================================== -->
+     <div id="general-content-1" class="pt100 pb100">
+        <div class="raw">
+            <div class="container">
+                <div class="container-fluid pt20 bg-gray">
+                        <div class="container">
+                            <div class="row">
+
+                                <!-- copyright start -->
+                                <div class="pull-left">
+
+                                    <br>
+                                    <h3 class="font-pacifico text-left"><img alt="logo" class="flaticon icc" src="{{ url_for('static', filename='img/flat-icon/phone.svg') }}"/>Tel: +38-067-670-8177</h3>
+                                    <br>
+                                    <h3 class="font-pacifico text-left"><img alt="logo" class="flaticon icc" src="{{ url_for('static', filename='img/flat-icon/address_book.svg') }}"/>Email: lviv.trans.tour@gmail.com</h3>
+                                    <br>
+                                    <h3 class="text-left"><img alt="logo" class="flaticon icc" src="{{ url_for('static', filename='img/flat-icon/sms.svg') }}"/>Ви також можете знайти нас тут: <a target="_blank" href="https://www.facebook.com/roman.kuch.1?fref=ts" ><i class="fa fa-facebook color-primary icofoot"></i></a> </h3>
+                                    <br>
+                                    <br>
+
+                                <!-- copyright end -->
+
+                                <!-- footer bottom start -->
+
+
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                <!-- footer bottom end -->
+
+                            </div><!-- row end -->
+                        </div><!-- container end -->
+                    </div><!-- container-fluid end -->
+                                <!-- footer bottom end -->
+
+                            </div><!-- row end -->
+                        </div><!-- container end -->
+                    </div><!-- container-fluid end -->
+
+
+        <!-- JQuery Core
+        =====================================-->
+        <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
+
+
+
+        <!-- JQuery Main
+        =====================================-->
+
+
+        <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
+
+        <script  src="{{ url_for('static', filename = 'js/main/parallax.min.js') }}"></script>
+
+        <script  src="{{ url_for('static', filename = 'js/main/js/main/jquery.countTo.js') }}"></script>
+
+        <script  src="{{ url_for('static', filename = 'js/main/owl.carousel.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/ion.rangeSlider.min.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/jquery.sticky.js') }}"></script>
+        <script  src="{{ url_for('static', filename = 'js/main/imagesloaded.pkgd.min.js') }}"></script>
+
+
+        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+
+
+
+
+    </body>
+</html>

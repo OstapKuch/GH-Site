@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
-        <title>lviv trans tour</title>            
+        <title>lviv trans tour</title>
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,46 +9,46 @@
         <meta name="description" content="Simple ideas for enhancing text input interactions" />
         <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
 
-        <!-- Load Core CSS 
+        <!-- Load Core CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
-    
-        <!-- Load Main CSS 
+
+        <!-- Load Main CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/hover.css') }}"/>
-        
-        <!-- Load Magnific Popup CSS 
+
+        <!-- Load Magnific Popup CSS
         =====================================-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>        
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>              
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup-zoom-gallery.css') }}"/>
-        
-        <!-- Load OWL Carousel CSS 
+
+        <!-- Load OWL Carousel CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
 
-         <!-- Css for hover gallery 
+         <!-- Css for hover gallery
         =====================================-->
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
 
-        <!-- Load Our Additional CSS 
+        <!-- Load Our Additional CSS
          =====================================-->
-
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
 
 
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
-        
-    
+
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
-        
+
         <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
         <!-- Load JS
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -63,7 +63,7 @@
 
 
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/css_input/set2.css') }}"/>
 
 
 
@@ -73,14 +73,14 @@
 
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
-        
+
         <!-- Page Loader
         ===================================== -->
-    
-        
+
+
         <!-- Navigation Area
-        ===================================== -->        
-       
+        ===================================== -->
+
         <div class="container navbar-container">
             <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
 
@@ -88,25 +88,21 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
+                       <a class="navbar-brand page-scroll" href="{{ url_for('home') }}">
                              <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
-                            Lviv-tour
+                            lviv trans tour
                         </a>
                     </div>
 
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
-                           
 
 
+                            <li><a href="{{ url_for('list2') }}">panel</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('contact') }}">About us</a></li>
 
-                            {% if session['username'] %}
-                            <li><a href="{{ url_for('logout') }}">Logout </a></li>
-                            {% else %}
-                            <li><a href="{{ url_for('login') }}">Sign in </a></li>
-                            {% endif %}
-                               
-                            
+
 
                         </ul>
 
@@ -115,34 +111,126 @@
             </nav>
         </div>
 
-        
-   
-                    
-                 
-        
-       
-       
-        
-        
-       
+
+
+
+
+
+
+
+
+
+
        <!-- General Content Area
         ===================================== -->
         <div id="general-content-2" class="bg-gray pt100 pb100">
-            <div class="container">
+      <div class="container pt50 pb50 bb-dashed-1">
                 <div class="row">
-                  <form action="create" method="post" class="clasicc"> 
-                   
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-justified">
+                          <li class="active"><a data-toggle="pill" href="#pilljustifiedHome">register car</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified1">register driver</a></li>
+                          <li><a data-toggle="pill" href="#pilljustified222">register admin</a></li>
+
+
+
+                        </ul>
+                        <div class="tab-content">
+
+
+
+
+
+                    <div id="pilljustifiedHome" class="tab-pane fade in active">
+                  <form action="reggcar" method="post" class="clasicc" enctype="multipart/form-data">
+
                   <div class="reg">
                         <span class="input input--manami">
-                        {% for row in error %}
-                            <a>{{row["error"]}}</a>
-                        {% endfor %}
+                            <input class="input__field input__field--manami field-control" type="text" id="input-32" name="conditions"  required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">conditions</span>
+                            </label>
+                        </span>
+
+
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text" id="input-32" name="countries" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">countries</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="integer" id="input-32" name="places" pattern="[0-9]{1,2}" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">places</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                         <input type="file" multiple="" name="file[]" class="span3" />
+                         <br>
+                         <input type="file" name="files" class="span3" />
+                         </span>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
+                    </div>
+
+
+                    </form>
+
+                    </div>
+
+
+
+
+
+                    <div id="pilljustified1" class="tab-pane fade">
+                    <form action="reggdriver" method="post" class="clasicc">
+
+                  <div class="reg">
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="name" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">name</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="text"  name="surname" required/>
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">surname</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <span class="input input--manami">
+                            <input class="input__field input__field--manami" type="tel"  name="number" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" placeholder="phone number" required />
+                            <label class="input__label input__label--manami" for="input-32">
+                                <span class="input__label-content input__label-content--manami">phone number</span>
+                            </label>
+                        </span>
+
+                        <br>
+                        <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
+                        </form>
+                    </div>
+                    </div>
+
+                    <div id="pilljustified222" class="tab-pane fade">
+                     <div class="reg">
+                      <form action="regadm" method="post" class="clasicc">
+                        <span class="input input--manami">
                             <input class="input__field input__field--manami" type="email" id="input-32" name="email" required />
                             <label class="input__label input__label--manami" for="input-32">
                                 <span class="input__label-content input__label-content--manami">Email</span>
                             </label>
                         </span>
-                   
+
                         <br>
                         <span class="input input--manami">
                             <input class="input__field input__field--manami" type="text" id="input-33" name="password" required />
@@ -173,77 +261,85 @@
                         </span>
                         <br>
                         <p><button class="button-o button-lg button-rounded button-danger hover-radial-out rebbb"  value=Login>register</button>
+
+                         </form>
                     </div>
-                        
-                    
-                   </form>   
-                   
-                     
-        
-        
-                </div><!-- row end -->
-            </div><!-- container end -->
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
         </div><!-- section general info end -->
-        
-        
-     
-        
-     
-      
-       
-        
-        
+
+
+
+
+
+
+
+
+
         <!-- footer Area
         ===================================== -->
-        <div id="footer" class="footer-two pt50">
-            
-            
-            <div class="container-fluid pt20">
+        <div class="container-fluid pt20 bg-gray">
                 <div class="container">
                     <div class="row">
 
                         <!-- copyright start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
-                            <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
+                        <div class="pull-left">
+
+                            <br>
+                            <h3 class="font-pacifico text-left">You can also find us here: <a target="_blank" href="https://www.facebook.com/roman.kuch.1?fref=ts" ><i class="fa fa-facebook color-primary icofoot"></i></a> </h3>
+                            <br>
+                            <br>
                         </div>
                         <!-- copyright end -->
 
                         <!-- footer bottom start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                            <p class="text-right">
-                                <a href="#" class="mr20">Privacy Policy</a>
-                                <a href="#" class="mr20">Term of Use</a>
-                                <a href="#" class="mr50">Site Map</a>
-                            </p>
+                        <div class="pull-right">
+                            <div class="pull-right">
+                                <h3 class="font-pacifico text-left">Tel: +38-067-670-8177</h3>
+                                <h3 class="font-pacifico text-left">Email: lviv.trans.tour@gmail.com</h3>
+                                <br>
+                                <br>
+                            </div>
                         </div>
                         <!-- footer bottom end -->
 
                     </div><!-- row end -->
                 </div><!-- container end -->
             </div><!-- container-fluid end -->
-        </div><!-- footer end -->
-        
-        <script  src="{{ url_for('static', filename = 'js/js_inputs/classie.js') }}"></script>         
+
+        <script  src="{{ url_for('static', filename = 'js/js_inputs/classie.js') }}"></script>
         <!-- JQuery Core
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
-        
+
         <!-- Magnific Popup
         =====================================-->
 
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
-        
+
         <!-- Progress Bars
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar-main.js') }}"></script>
-        
+
         <!-- JQuery Main
         =====================================-->
 
-        
+
         <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
 
@@ -260,7 +356,7 @@
         <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
 
         <script  src="{{ url_for('static', filename = 'js/js_inputs/new.js') }}"></script>
-        
-        
+
+
     </body>
 </html>

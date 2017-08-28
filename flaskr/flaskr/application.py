@@ -10,14 +10,13 @@ import sqlite3 as sql
 
 UPLOAD_FOLDER = 'static/img/cars/'
 app = Flask(__name__)
-app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mail=Mail(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'ostapco220@gmail.com'
-app.config['MAIL_PASSWORD'] = '123xer098'
+app.config['MAIL_USERNAME'] = 'lviv.trans.tour@gmail.com'
+app.config['MAIL_PASSWORD'] = '123_xer_098'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -88,21 +87,20 @@ def create():
         adm = 0
         conn = sqlite3.connect('228')
         c = conn.cursor()
-        c.execute("SELECT email from Users WHERE email=?",(email))
+        c.execute("SELECT email from Users WHERE email=?",[email])
         em = [str(item[0]) for item in c.fetchall()]
-        print(len(em[0]))
-        if len(em[0]) < 1:
+        if len(em) < 1:
           c.execute("INSERT INTO Users_temp (email, number, name, surname, admin, code, password) VALUES (?, ?, ?, ?, ?, ?,?)",(email, num, name, surname, adm, a, pas))
           conn.commit()
           c.close()
-          msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
-          msg.body = "Dear "+ name +", its your security code:  " + a + " Please enter it in confirm field to finish registration."
+          msg = Message('Hello', sender = 'lviv.trans.tour@gmail.com', recipients = [email])
+          msg.body = "Dear "+ name +", its your security code:    " + a + "    Please enter it in confirmation field to finish registration."
           mail.send(msg)
           return render_template('confirm.html')
-        else: 
+        else:
           error = ("This email is already in use")
           return render_template('registr.html',error=error)
-         
+
 
 
 
@@ -148,7 +146,9 @@ def regadm():
       c.close()
       return render_template('index.html')
 
-         
+@app.route('/aboutus')
+def aboutus():
+    return render_template('about_us.html')
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
@@ -203,7 +203,7 @@ def confirm():
             return render_template('sign in.html')
 @app.route('/list', methods=['GET', 'POST'])
 def list():
-   a = request.form.get('bus')  
+   a = request.form.get('bus')
    con = sql.connect("228")
    con.row_factory = sql.Row
    cur = con.cursor()
@@ -226,7 +226,7 @@ def form():
         conn = sqlite3.connect('228')
         c = conn.cursor()
         email = session['username'][0]
-        
+
         c.execute('SELECT id FROM Users WHERE email=?', [email])
         id = [str(item[0]) for item in c.fetchall()]
         c.execute('SELECT name FROM Users WHERE email=?', [email])
@@ -235,10 +235,6 @@ def form():
         sur = [str(item[0]) for item in c.fetchall()]
         c.execute('SELECT number FROM Users WHERE email=?', [email])
         num = [str(item[0]) for item in c.fetchall()]
-        nam = str(nam)
-        msg = Message('Hello', sender = 'ostapco220@gmail.com', recipients = [email])
-        msg.body = "User " + nam + " " + str(sur) + " made an order. His email is: " + str(email) + ", number is: " + str(num) + " "
-        mail.send(msg)
         car_id = request.form.get('sendMessage')
         dest = request.form['destination']
         date = request.form['date']
@@ -246,7 +242,15 @@ def form():
         date2 = request.form['date2']
         c.execute("INSERT INTO Orders (car_id, user_id, date, destination, people, data2) VALUES (?, ?, ?, ?, ?, ?)",(car_id, id[0], str(date), dest, peop, date2))
         conn.commit()
-        return render_template('index.html')
+        conn.close()
+        conn = sqlite3.connect('228')
+        c = conn.cursor()
+        c.execute("SELECT MAX(id) from Orders")
+        iddd = [str(item[0]) for item in c.fetchall()]
+        msg = Message('Hello', sender = 'lviv.trans.tour@gmail.com', recipients = [email])
+        msg.body = "User " + nam[0] + " " + sur[0] + " made an order with id " + iddd[0] + " . His email is: " + email + ", number is: " + num[0] + " "
+        mail.send(msg)
+        return redirect(url_for('list3'))
 
 
 
@@ -351,7 +355,7 @@ def deny2():
 
 
 @app.route('/registr_car.html/<filename>')
-def uploaded_file(filename):  
+def uploaded_file(filename):
   return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 
@@ -359,8 +363,6 @@ def uploaded_file(filename):
 @app.route('/send_file/<filename>')
 def send_file(filename):
   return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-  
-  
 
 
 
@@ -371,22 +373,6 @@ def send_file(filename):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 @app.route('/accept', methods=['GET', 'POST'])
 def accept():
    con = sql.connect("228")
@@ -428,7 +414,7 @@ def reggcar():
     em = em + 1
     st = os.path.splitext(f.filename)
     st = str(em) + str(st[1])
-    filename = secure_filename(f.filename)        
+    filename = secure_filename(f.filename)
     f.save(os.path.join(app.config['UPLOAD_FOLDER'], st))
     c.execute("INSERT INTO Cars (conditions, rode, places, photo) VALUES (?, ?, ?, ?)",(conditions, countries, places, st))
     conn.commit()
@@ -439,7 +425,6 @@ def reggcar():
     em = [(item[0]) for item in c.fetchall()]
     em = em[0]
     for file in uploaded_files:
-      if file and allowed_file(file.filename):  
         conn = sqlite3.connect('228')
         c = conn.cursor()
         c.execute("SELECT MAX(id) from Photos")
@@ -449,7 +434,7 @@ def reggcar():
         strip = os.path.splitext(file.filename)
         strip = str(mm) + str(strip[1])
         c.execute("INSERT INTO Photos (id_car, photo) VALUES (?, ?)",(em, strip))
-        filename = secure_filename(file.filename)        
+        filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], strip))
         filenames.append(filename)
         conn.commit()
@@ -467,4 +452,3 @@ def orders():
   cur.execute("SELECT * from Orders WHERE user_id=?",(idd))
   rows = cur.fetchall();
   return render_template('my orders.html',rows = rows)
-

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>lviv trans tour</title>             
+        <title>lviv trans tour</title>
         <meta name="description" content="">
-        <meta name="keywords" content="">
+        <meta name="keywords" content="Львів транс тур">
         <meta charset="utf-8">
         <meta name="author" content="Harry Boo">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,96 +14,44 @@
         <meta name="description" content="Simple ideas for enhancing text input interactions" />
         <meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
         <meta name="author" content="Codrops" />
-        
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animate.min.css') }}"/>
-    
-        <!-- Load Main CSS 
+
+        <!-- Load Main CSS
         =====================================-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/main.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/setting.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main/hover.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fonts_input/font-awesome-4.2.0/css/font-awesome.min.css') }}"/>
 
 
-        <link rel="shortcut icon" href="../favicon.ico">
-
-
-
-
-
-
-
-       
-
-
-
-
- 
-
-
-
-
-
-
-
-        <!-- Load Magnific Popup CSS 
-        =====================================-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magic.min.css') }}"/>        
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup.css') }}"/>              
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific/magnific-popup-zoom-gallery.css') }}"/>
-        
-        <!-- Load OWL Carousel CSS 
-        =====================================-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.carousel.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.theme.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel/owl.transitions.css') }}"/>
-
-         <!-- Css for hover gallery 
-        =====================================-->
-        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/main.css') }}" />
-        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css hower gallery/sim-prev-anim.css') }}"/>
-
-        <!-- Load Our Additional CSS 
-         =====================================-->
-
-
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo/logo-top.ico') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='Our new css/css.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/color/pasific.css') }}"/>
-        
-    
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/et-line-font.css') }}"/>
-        
-        <!-- Load JS
-        HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-        WARNING: Respond.js doesn't work if you view the page via file://
-        =====================================-->
 
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/font-awesome.css') }}"/>
+
+
     </head>
     <body  id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
-        
+
         <!-- Page Loader
         ===================================== -->
-		<div id="pageloader">
-			<div class="loader-item">
+        <div id="pageloader">
+            <div class="loader-item">
                 <img alt="page loader" src="{{ url_for('static', filename='img/other/puff.svg') }}"/>
             </div>
-		</div>
-        
+        </div>
+
         <a href="#page-top" class="go-to-top">
             <i class="fa fa-long-arrow-up"></i>
         </a>
-        
-        
+
+
         <!-- Navigation Area
-        ===================================== -->        
+        ===================================== -->
         <div class="container navbar-container">
             <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
 
@@ -113,26 +61,25 @@
                         </button>
                         <a class="navbar-brand page-scroll" href="#page-top">
                             <img alt="logo" class="flaticon" src="{{ url_for('static', filename='img/flat-icon/home.svg') }}"/>
-                            Lviv-tour
+                            Головна
                         </a>
                     </div>
 
                     <div class="navbar-collapse collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
-                           
 
-                         
-                            {% if session['username'] %}   
+
+
+                            {% if session['username'] %}
                                 {% if session['username'][1] == 0 %}
-                                <li><a href="{{ url_for('list2') }}">Panel</a></li>
+                                <li><a href="{{ url_for('list2') }}">Панель</a></li>
                                 {% endif %}
-                            <li><a href="{{ url_for('orders') }}">My orders</a></li>
-                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            <li><a href="{{ url_for('orders') }}">Мої замовлення</a></li>
+                            <li><a href="{{ url_for('logout') }}">Вихід</a></li>
                             {% else %}
-                            <li><a href="{{ url_for('login') }}">Sign in</a></li>
-                            <li><a href="{{ url_for('registr') }}">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Вхід</a></li>
                             {% endif %}
-                            <li><a href="{{ url_for('contact') }}">About us</a></li>
+                            <li><a href="{{ url_for('aboutus') }}">Контакти</a></li>
 
 
                         </ul>
@@ -141,21 +88,6 @@
 
             </nav>
         </div>
-        
-        
-   
-                    
-         
-
-
-
-
-
-
-
-
-
-        
 
 
 
@@ -171,196 +103,196 @@
 
 
 
-        
-       
-       
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Achievement Area
         ===================================== -->
-        <div class="pt50 " style="background: url(img/bg/bg-asphalt.jpg) 100% 100% repeat-x #e8f3f9;">
-            <div class="container">
-                
+
+            <div class="container fotimg">
+
                 <!-- title and short description start -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="font-source-sans-pro text-center mb50 footer-index">                          
-                            
-                            Travel Company
-                           
-                        </h2>
-                    </div>
+                <div class="row fotcov">
+                    <div class="col-md-12 fotd">
+                        <div class="fotdd">
+                        <p class="font-pasific text-center loghh">
+
+                            Львівська
+
+                        </p>
+                        <p class="font-pasific text-center logh">
+
+                            транспортно-туристична компанія
+
+                        </p>
+
+
+
+                        </div>
+
+                        </div>
+
                 </div>
 
-                <div class="col-md-12">
-                    <a href="page-gallery-4col.html"><img alt="device" class="img-responsive center-block" src="{{ url_for('static', filename='img/other/img-other-6.png') }}"/></a>
-                </div>
-                
+
             </div><!-- container end -->
-        </div><!-- section achievment end -->
-        
-        
+
+
+
         <!-- Info Area
-        ===================================== -->
-        <div id="Info-1" class="bg-gray pt30 bb-solid-1">
-            <div class="container">
-                <div class="row">                
-                    <div class="col-md-8 col-md-offset-2 text-center pb35">
-                        <a class="button button-md button-pasific hover-ripple-out" href="#general-content-1">Come to our cars</a>
-                    </div>                
-                </div>
-            </div>
-        </div>
-        
-        
+
+
+
         <!-- General Content Area
         ===================================== -->
-       
+
 {% for row in rowss%}
 
-   
+
 <div id="general-content-1" class="pt100 pb100">
 <div class="raw">
 <div class="container">
-        <table>
-            <tbody>
 
-                <tr>
-             
+
                     <div class="col-md-6">
-                  
+
                     <img src="{{ url_for('send_file', filename = row['photo'] ) }}" class="img-responsive center-block indeximg">
-          
+
                     </div>
                     <!-- left content end -->
-                    
+
                     <!-- right content start -->
                     <div class="col-md-5 col-md-push-1">
-                       
+
                             <div class="reg">
                             <h1 class="text-capitalize color-red">
-                                Small Info
+                                Інформація
                             </h1>
-                       
+
                                 <br>
 
                                 <table class="table table-striped new-one sizee">
                                     <tbody>
                                         <tr>
-                                     
+
                                             <tr>
-                                                <th>places</th>
+                                                <th>Кількість місьць</th>
                                                 <td>{{row["places"]}}</td>
-                                                
-                                                
+
+
                                             </tr>
                                             <tr>
-                                               <th>conditions</th>
+                                               <th>к\Комплектація</th>
                                                <td>{{row["conditions"]}}</td>
                                             </tr>
                                             <tr>
-                                               <th>rode</th>
+                                               <th>Поїздки</th>
                                                <td>{{row["rode"]}}</td>
                                             </tr>
-                                            
-                                   
+
+
                                         </tr>
                                     </tbody>
                                 </table>
+                                <br>
                                <div class="reg">
                                 <form action="list" method="post">
-                                    <p><button name='bus' class="button-o button-lg button-rounded button-danger hover-radial-out" id={{row['id']}} value={{row['id']}}>More info</button>
-                               
+                                    <p><button name='bus' class="button-o button-lg button-rounded button-danger hover-radial-out" id={{row['id']}} value={{row['id']}}>Детальніше</button>
+
                                  </form>
                                 </div>
-                            <div class="clearfix"></div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- right content end -->          
-                </tr>
+                    <!-- right content end -->
 
-        
 
-            </tbody>
-        </table>
+
+
         </div>
         </div>
             {% endfor %}
-         
-               
+
+
 
         <!-- General Content Area
         ===================================== -->
-       
-        
-     
-        
-     
 
-        
-        
+
+
+
+
+
+
+
         <!-- footer Area
         ===================================== -->
-        <div id="footer" class="footer-two pt50">
-            
-            
-            <div class="container-fluid pt20">
+         <div class="container-fluid pt20 bg-gray">
                 <div class="container">
                     <div class="row">
 
                         <!-- copyright start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-left">
-                            <p>Copyright &copy;2016 <a href="#">Pasific Studio, LLC</a>. All rights reserved.</p>
+                        <div class="pull-left">
+
+                            <br>
+                            <h3 class="text-left">Ви також можете знайти нас тут: <a target="_blank" href="https://www.facebook.com/roman.kuch.1?fref=ts" ><i class="fa fa-facebook color-primary icofoot"></i></a> </h3>
+                            <br>
+                            <br>
                         </div>
                         <!-- copyright end -->
 
                         <!-- footer bottom start -->
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                            <p class="text-right">
-                                <a href="#" class="mr20">Privacy Policy</a>
-                                <a href="#" class="mr20">Term of Use</a>
-                                <a href="#" class="mr50">Site Map</a>
-                            </p>
+                        <div class="pull-right">
+                            <div class="pull-right">
+                                <h3 class="font-pacifico text-left">Tel: +38-067-670-8177</h3>
+                                <h3 class="font-pacifico text-left">Email: lviv.trans.tour@gmail.com</h3>
+                                <br>
+                                <br>
+                            </div>
                         </div>
                         <!-- footer bottom end -->
 
                     </div><!-- row end -->
                 </div><!-- container end -->
             </div><!-- container-fluid end -->
-        </div><!-- footer end -->
-        
-        
+
+
         <!-- JQuery Core
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/core/jquery.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/core/bootstrap.min.js') }}"></script>
-        
-        <!-- Magnific Popup
-        =====================================-->
 
-        <script  src="{{ url_for('static', filename = 'js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-        <script  src="{{ url_for('static', filename = 'js/magnific-popup/magnific-popup-zoom-gallery.js') }}"></script>
-        
-        <!-- Progress Bars
-        =====================================-->
-        <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar.js') }}"></script>
-        <script  src="{{ url_for('static', filename = 'js/progress-bar/bootstrap-progressbar-main.js') }}"></script>
-        
+
         <!-- JQuery Main
         =====================================-->
         <script  src="{{ url_for('static', filename = 'js/main/jquery.appear.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/isotope.pkgd.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/parallax.min.js') }}"></script>
-        <script  src="{{ url_for('static', filename = 'js/main/jquery.countTo.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/owl.carousel.min.js') }}"></script>
-        <script  src="{{ url_for('static', filename = 'js/main/ion.rangeSlider.min.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/jquery.sticky.js') }}"></script>
         <script  src="{{ url_for('static', filename = 'js/main/imagesloaded.pkgd.min.js') }}"></script>
 
 
-        
-        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script> 
-        
+
+        <script  src="{{ url_for('static', filename = 'js/main/main.js') }}"></script>
+
     </body>
 </html>
